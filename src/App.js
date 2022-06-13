@@ -10,14 +10,13 @@ import Login from './pages/auth/login';
 import RequireAuth from './core/auth/auth.component';
 import User from './pages/user';
 import Home from './pages/home';
+import Header from './components/header';
 
 
 function App() {
   return (
     <BrowserRouter>
-      <header>
-        <p>Esto es el header</p>
-      </header>
+      <Header></Header>
       <Routes>
         <Route path="/" element={<Home></Home>} /> {/* /*/}
         <Route path='/validate' element={<Validate/>}></Route>

@@ -1,0 +1,19 @@
+.header_container{
+    padding: 1rem;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav-container{
+    text-decoration: none;
+    color:white;
+    padding: 20px;
+}
+
+.toggle{
+    margin-left: 75px;
+    
+}

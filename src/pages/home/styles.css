@@ -1,0 +1,21 @@
+.welcome{
+    
+    background-color: #99EA82;
+    height: 180px;
+    color: white;
+    padding: 80px;
+    background-image: url('https://i0.wp.com/hipertextual.com/wp-content/uploads/2017/03/Captura-de-pantalla-2017-03-30-a-las-11.59.05.png?w=1560&quality=50&strip=all&ssl=1');
+}
+
+.home-container{
+    background-color: #F3F3F3;
+    padding: 20px 100px;
+}
+
+.home-popular,
+.home-trending,
+.home-upcoming{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}

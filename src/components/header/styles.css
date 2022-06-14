@@ -1,6 +1,6 @@
 .header_container{
-    padding: 1rem;
-    background-color: black;
+    padding: 0.5rem;
+    background-color: #5A3AE9;
     color: white;
     display: flex;
     justify-content: space-around;
@@ -13,7 +13,15 @@
     padding: 20px;
 }
 
+.peliculas-series{
+    display: flex;
+}
+
 .toggle{
     margin-left: 75px;
     
+}
+
+.register-login{
+    display: flex;
 }

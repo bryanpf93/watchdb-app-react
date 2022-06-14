@@ -1,10 +1,10 @@
 .header_container{
-    padding: 0.5rem;
     background-color: #5A3AE9;
     color: white;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    width: 100vw;
 }
 
 .nav-container{

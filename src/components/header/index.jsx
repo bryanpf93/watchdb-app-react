@@ -1,6 +1,6 @@
 import './styles.css';
 import { Link } from 'react-router-dom';
-import { Container, Form } from 'react-bootstrap';
+import { Container, Form, Navbar } from 'react-bootstrap';
 
 
 function Header() {
@@ -15,15 +15,20 @@ function Header() {
                 <option value="es">ES</option>
                 <option value="en">EN</option>
             </select>
-            <Container>
             <Form>
-                <Form.Check
-                    type="switch"
-                    id="custom-switch"
-                    label="Check this switch"
-                ></Form.Check>
-            </Form>
-            </Container>
+  <Form.Check 
+    type="switch"
+    id="custom-switch"
+    label="Check this switch"
+  />
+  <Form.Check 
+    disabled
+    type="switch"
+    label="disabled switch"
+    id="disabled-custom-switch"
+  />
+</Form>
+                
 
             <input type="text" placeholder='Introduce el nombre'/>
             <nav className='register-login'>

@@ -17,11 +17,13 @@ function Login(){
         .then(() => navigate("/user")); // despues de logarme tengo que navegar
     }
     return (
+        <div className="login">
         <form onSubmit={handleLogin}>
             <input name="email" type="email" placeholder="Email"></input>
             <input name="pass" type="password" placeholder="Pass"></input>
             <button type="submit">Log In</button>
         </form>
+        </div>
     )
 }
 

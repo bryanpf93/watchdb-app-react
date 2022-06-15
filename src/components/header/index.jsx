@@ -1,42 +1,49 @@
 import './styles.css';
 import { Link } from 'react-router-dom';
-import { Container, Form, Navbar } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { useContext } from 'react';
+import { ThemeContext } from '../../contexts/theme.context';
+
 
 
 function Header() {
-    return (
-        <header className='header_container'>
-            <h1><Link className='nav-container' to='/'>WATCHDB</Link></h1>
-            <nav className='peliculas-series'>
-              <h4><Link className='nav-container' to="/peliculas">PELICULAS</Link></h4>
-               <h4><Link className='nav-container' to="/series">SERIES</Link></h4> 
-            </nav>
-            <select name='select'>
-                <option value="es">ES</option>
-                <option value="en">EN</option>
-            </select>
-            <Form>
-  <Form.Check 
-    type="switch"
-    id="custom-switch"
-    label="Check this switch"
-  />
-  <Form.Check 
-    disabled
-    type="switch"
-    label="disabled switch"
-    id="disabled-custom-switch"
-  />
-</Form>
-                
+  
+  // const [setTheme] = useContext(ThemeContext);
+  const { t, i18n } = useTranslation('global');
 
-            <input type="text" placeholder='Introduce el nombre'/>
-            <nav className='register-login'>
-               <h4><Link className='nav-container' to="/auth/register">REGISTRARSE</Link></h4> 
-                <h4><Link className='nav-container' to="/auth/login">ACCEDER</Link></h4>
-            </nav>
-        </header>
-    )
+  // const handleChange = (e) => {
+  //   const cheked = e.target.cheked;
+  //   const theme = cheked ? 'dark' : 'light';
+  //   setTheme(theme);
+  // }
+
+  return (
+    <header className='header_container'>
+      <div className='logo'>
+        <h1><Link className='nav-container' to='/'>WATCHDB</Link></h1>
+      </div>
+      <nav className='peliculas-series'>
+        <h4><Link className='nav-container' to="/movies">{t('header.MOVIES')}</Link></h4>
+        <h4><Link className='nav-container' to="/series">{t('header.TVSHOWS')}</Link></h4>
+      </nav>
+      <div>
+        <button onClick={() => i18n.changeLanguage('es')} >ES</button>
+        <button onClick={() => i18n.changeLanguage('en')}>EN</button>
+      </div>
+      <div>
+        <label className='switch'>
+          <input  type="checkbox" ></input>
+          <span className='slider round'></span>
+        </label>
+      </div>
+      <input type="text" placeholder={t('header.SEARCH_LABEL')} />
+      <nav className='register-login'>
+        <h4><Link className='nav-container' to="/auth/register">{t('header.REGISTER')}</Link></h4>
+        <h4><Link className='nav-container' to="/auth/login">{t('header.LOGIN')}</Link></h4>
+      </nav>
+    </header>
+  )
 }
 
 export default Header;

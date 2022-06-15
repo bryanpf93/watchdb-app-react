@@ -1,0 +1,14 @@
+{
+    "header": {
+        "MOVIES": "MOVIES",
+        "TVSHOWS": "SERIES",
+        "REGISTER": "REGISTER",
+        "LOGIN": "LOGIN",
+        "WELCOME": "Welcome",
+        "WELCOME_MESSAGE": "Millions of movies, series and people to discover.",
+        "UPCOMING_MOVIES": "UPCOMING NEW RELEASES",
+        "TRENDING":"TRENDING",
+        "MOST_POPULAR":"MOST POPULAR",
+        "SEARCH_LABEL" : "Enter the name"
+    }
+}

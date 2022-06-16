@@ -1,12 +1,11 @@
-
 .light {
-    --background-color: #E2DEDE;
-  }
-  
-  .dark {
-    --background-color: #292828;
-  }
-  
-  .App {
-    background-color: var(--background-color);
-  }
+  --background-color: #E2DEDE;
+}
+
+.dark {
+  --background-color: #292828;
+}
+
+.app {
+  background-color: var(--background-color);
+}

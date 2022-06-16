@@ -9,14 +9,16 @@ import { ThemeContext } from '../../contexts/theme.context';
 
 function Header() {
   
-  // const [setTheme] = useContext(ThemeContext);
+  const [theme, setTheme] = useContext(ThemeContext);
   const { t, i18n } = useTranslation('global');
 
-  // const handleChange = (e) => {
-  //   const cheked = e.target.cheked;
-  //   const theme = cheked ? 'dark' : 'light';
-  //   setTheme(theme);
-  // }
+
+  console.log(setTheme);
+  const handleChange = (e) => {
+    const checked = e.target.checked;
+    const theme = checked ? 'dark' : 'light';
+    setTheme(theme);
+  }
 
   return (
     <header className='header_container'>
@@ -33,7 +35,7 @@ function Header() {
       </div>
       <div>
         <label className='switch'>
-          <input  type="checkbox" ></input>
+          <input  type="checkbox" onChange={handleChange} checked={theme==='dark'}></input>
           <span className='slider round'></span>
         </label>
       </div>

@@ -24,17 +24,21 @@ function App() {
   return (
     <BrowserRouter>
       <Header></Header>
-      <Routes>
-        <Route path="/" element={<Home></Home>} /> {/* /*/}
-        <Route path='/movies' element={<Movies></Movies>}></Route>
-        <Route path='/series' element={<Series></Series>}></Route>
-        <Route path='/validate' element={<Validate/>}></Route>
-        <Route path='/user' element={ <RequireAuth><User/></RequireAuth>}></Route>
-        <Route path='/auth'>
-          <Route path='register' element={<Register/>}></Route>
-          <Route path='login' element={<Login/>}></Route>
-        </Route>
-      </Routes>
+
+      <main>
+        <Routes>
+          <Route path="/" element={<Home></Home>} /> {/* /*/}
+          <Route path='/movies' element={<Movies></Movies>}></Route>
+          <Route path='/series' element={<Series></Series>}></Route>
+          <Route path='/validate' element={<Validate/>}></Route>
+          <Route path='/user' element={ <RequireAuth><User/></RequireAuth>}></Route>
+          <Route path='/auth'>
+            <Route path='register' element={<Register/>}></Route>
+            <Route path='login' element={<Login/>}></Route>
+          </Route>
+        </Routes>
+      </main>
+      
       <Footer></Footer>
   </BrowserRouter>
 

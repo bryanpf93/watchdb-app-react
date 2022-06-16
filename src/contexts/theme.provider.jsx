@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { ThemeContext } from "./theme.context";
 
+const STORAGE_KEY = 'key-theme';
 
-export const STORAGE_KEY = 'key-theme';
+function ThemeProvider({ children }) {
 
-function ThemeProvider({children}){
-
-    const [theme,setTheme] = useState(() => localStorage.getItem(STORAGE_KEY))
+    const [theme, setTheme] = useState(() => {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        return stored ? stored : 'light';
+    })
 
     useEffect(() => {
         localStorage.setItem(STORAGE_KEY, theme)
@@ -14,7 +16,7 @@ function ThemeProvider({children}){
 
     return (
 
-        <ThemeContext.Provider value={[theme,setTheme]}>
+        <ThemeContext.Provider value={[theme, setTheme]}>
             {children}
         </ThemeContext.Provider>
     )

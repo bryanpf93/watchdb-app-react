@@ -36,8 +36,10 @@ function App() {
             <Route path='login' element={<Login/>}></Route>
           </Route>
         </Routes>
+
         <Footer></Footer>
       </div>
+
   </BrowserRouter>
 
   );

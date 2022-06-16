@@ -43,7 +43,7 @@ function Home() {
         </div>
       <h2>{t('header.MOST_POPULAR')}</h2>
       <div className="home-popular">
-        {mostPopularMovies && (mostPopularMovies.slice(0,2)).map(m => <MostPopular key={m.id} popular={m}></MostPopular>)}
+        {mostPopularMovies && mostPopularMovies.map(m => <MostPopular key={m.id} popular={m}></MostPopular>)}
       </div>
       <h2>{t('header.TRENDING')}</h2>
       <div className="home-trending">

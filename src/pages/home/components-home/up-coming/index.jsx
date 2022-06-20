@@ -1,8 +1,12 @@
 import './styles.css'
 
-function UpComing({ upcoming }) {
+function UpComing({ upcoming, navigate }) {
+
+    console.log(upcoming)
+
+
     return (
-        <div className="up-coming-container">
+        <div className="up-coming-container" onClick={() => navigate(`/movies/${upcoming.id}`) } >
             <img className='up-coming-image' src={`https://image.tmdb.org/t/p/w500${upcoming.poster_path}`} alt="" />
             <div>
             <h3>{upcoming.title}</h3>

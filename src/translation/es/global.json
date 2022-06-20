@@ -7,8 +7,10 @@
         "WELCOME" : "Bienvenid@",
         "WELCOME_MESSAGE" : "Millones de películas, series y personas por descubrir.",
         "UPCOMING_MOVIES":"PROXIMOS ESTRENOS",
-        "TRENDING":"TENDENCIAS",
-        "MOST_POPULAR":"MÁS POPULARES",
-        "SEARCH_LABEL" : "Introduzca el nombre"
+        "MOVIES_TRENDING":"TENDENCIAS",
+        "MOVIES_MOST_POPULAR":"PELíCULAS MÁS POPULARES",
+        "SEARCH_LABEL" : "Introduzca el nombre",
+        "TVSHOWS_MOST_POPULAR":"SERIES MÁS POPULARES"
+
     }
 }

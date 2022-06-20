@@ -1,15 +1,26 @@
-import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { getMovieUpcoming } from '../../core/movies/movies.utils';
+import { useFetchMedia } from '../../hooks/useFetchMedia';
+import MostPopular from '../home/components-home/most-popular';
 import './styles.css'
 
-function Movies (){
+function Movies() {
 
-    const [moviesList, setMoviesList] = useState([])
+    const { t } = useTranslation('global');
 
-    const API_KEY = process.env.REACT_APP_API_KEY_MOVIE_DB
+    const { data: mostPopularMovies } = useFetchMedia('movie/popular', getMovieUpcoming);
 
-    return(
-        <h1>Esto es la pagina de peliculas</h1>
+    return (
+
+        <>
+            <div className='movies'>
+                <h2>{t('header.MOVIES_MOST_POPULAR')}</h2>
+                <div className="home-popular">
+                    {mostPopularMovies && mostPopularMovies.map(m => <MostPopular key={m.id} popular={m}></MostPopular>)}
+                </div>
+            </div>
+        </>
     )
-} 
+}
 
 export default Movies;

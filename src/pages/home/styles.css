@@ -1,6 +1,4 @@
 .welcome{
-    
-    background-color: #99EA82;
     height: 180px;
     color: white;
     padding: 80px;
@@ -17,4 +15,21 @@
     display: flex;
     flex-wrap: wrap;
     gap: 25px;
+}
+
+.title-home{
+    display: flex;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 50px 0 30px 0;
+
+}
+
+.title-icon{
+    margin-right: 10px;
+    color: #5A3AE9;
+}
+
+.title{
+    text-decoration: none;
 }

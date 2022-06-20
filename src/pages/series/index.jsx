@@ -1,14 +1,22 @@
-import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { getMovieUpcoming } from '../../core/movies/movies.utils';
+import { useFetchMedia } from '../../hooks/useFetchMedia';
+import TvPopular from '../home/components-home/tv-popular';
 import './styles.css'
 
 function Series (){
 
-    const [seriesList, setSeriesList] = useState([])
+    const { t } = useTranslation('global');
 
-    const API_KEY = process.env.REACT_APP_API_KEY_MOVIE_DB
+    const { data: popularTvShows } = useFetchMedia('tv/popular', getMovieUpcoming);
 
     return(
-        <h1>Esto es la pagina de series</h1>
+        <div className='series'>
+                <h2>{t('header.TVSHOWS_MOST_POPULAR')}</h2>
+                <div className="home-popular">
+                    {popularTvShows && popularTvShows.map(m => <TvPopular key={m.id} popularTV={m}></TvPopular>)}
+                </div>
+            </div>
     )
 } 
 

@@ -52,7 +52,7 @@ function Header() {
         <Container>
           <Navbar.Brand href="/" className="fs-1">WATCHDB</Navbar.Brand>
           <Navbar.Toggle />
-          <Navbar.Collapse id="basic-navbar-nav" class='justify-content-end' >
+          <Navbar.Collapse id="basic-navbar-nav" className='justify-content-end' >
             <Nav className="me-auto">
               <ButtonGroup className="me-2" aria-label="First group">
                 <Button onClick={() => i18n.changeLanguage('es')}>ES</Button>

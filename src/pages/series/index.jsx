@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { getMovieUpcoming } from '../../core/movies/movies.utils';
+import { getMovieUpcoming } from '../../core/media/media.services';
 import { useFetchMedia } from '../../hooks/useFetchMedia';
-import TvPopular from '../home/components-home/tv-popular';
+// import TvPopular from '../home/components-home/tv-popular';
 import './styles.css'
 
 function Series (){
@@ -13,9 +13,9 @@ function Series (){
     return(
         <div className='series'>
                 <h2>{t('header.TVSHOWS_MOST_POPULAR')}</h2>
-                <div className="home-popular">
+                {/* <div className="home-popular">
                     {popularTvShows && popularTvShows.map(m => <TvPopular key={m.id} popularTV={m}></TvPopular>)}
-                </div>
+                </div> */}
             </div>
     )
 } 

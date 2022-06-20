@@ -18,6 +18,7 @@ import { useContext } from 'react';
 import { ThemeContext } from './contexts/theme.context';
 import { Container } from 'react-bootstrap';
 import MoviesDetails from './pages/movies-details';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {

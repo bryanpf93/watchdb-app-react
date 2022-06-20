@@ -33,11 +33,11 @@ function MoviesDetails() {
     console.log(movie)
 
     return (
-        <div className='page-movie'>
+        <div className='container-fluid w-100'>
             {loading ? <div>Loading...</div> :
-                <div className="movie-details">
-                    <img className='movie-image' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} width={300} height={450} />
-                    <div className="movie-info">
+                <div className="row p-5 mt-5 bg-danger">
+                    <img className='movie-image col-md-4' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} width={300} height={450} />
+                    <div className="movie-info col-md">
                         <h1>{movie.title}</h1>
                         <p>{movie.release_date}</p>
                         <p>Duracion: {movie.runtime} minutos</p>
@@ -58,7 +58,28 @@ function MoviesDetails() {
 
                 </div>}
 
-            <div className='cast-container'>
+                {/* <div className='d-flex row flex-column m-5 w-100'>
+                    <div className='d-flex flex-column' >
+                        <h3 className='mb-5'>Actores</h3>
+                        <div className='d-flex actors gap-4'>
+                            {(movie?.credits?.cast?.slice(0,7))?.map(actor => <div key={actor.id} className='d-flex actor flex-wrap col-3'>
+                                <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} alt={actor.name} width={140} height={190} />
+                                <p className='d-flex justify-content-center align-items-center'>{actor.name}</p>
+                            </div>)}
+                        </div>
+                    </div>
+
+                    <div className='col-md-8'>
+                        <h3>Trailers</h3>
+                        <div className='trailers'>
+                            {movie?.videos?.results?.map(trailer => <div key={trailer.id} className='trailer'>
+                                <iframe width="560" height="315" src={`https://www.youtube.com/embed/${trailer.key}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                            </div>)}
+                        </div>
+                    </div>
+                </div> */}
+
+            {/* <div className='cast-container'>
                 <h3>Actores</h3>
                 <div className='cast'>
                     {  (movie?.credits?.cast?.slice(0,8))?.map(actor => <div key={actor.id} className='actor'>
@@ -76,7 +97,7 @@ function MoviesDetails() {
                         <iframe width="300" height="200" src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                     </div> )}
                 </div>
-            </div>
+            </div> */}
 
         </div>
     )

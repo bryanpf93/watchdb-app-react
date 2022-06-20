@@ -2,8 +2,6 @@ import './styles.css'
 
 function UpComing({ upcoming, navigate }) {
 
-    console.log(upcoming)
-
 
     return (
         <div className="up-coming-container" onClick={() => navigate(`/movies/${upcoming.id}`) } >

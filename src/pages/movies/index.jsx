@@ -13,12 +13,18 @@ function Movies() {
     return (
 
         <>
-            <div className='movies'>
-                <h2>{t('header.MOVIES_MOST_POPULAR')}</h2>
-                <div className="home-popular">
+            <h2 className='mt-5 m-5'>{t('header.MOVIES_MOST_POPULAR')}</h2>
+            
+                <div className=" d-flex home-popular m-5">
                     {mostPopularMovies && mostPopularMovies.map(m => <MostPopular key={m.id} popular={m}></MostPopular>)}
                 </div>
-            </div>
+
+            {/* <div className = 'container'>
+            <h2>{t('header.MOVIES_MOST_POPULAR')}</h2>
+                
+                {mostPopularMovies && mostPopularMovies.map(m => <MostPopular key={m.id} popular={m}></MostPopular>)}
+                
+            </div> */}
         </>
     )
 }

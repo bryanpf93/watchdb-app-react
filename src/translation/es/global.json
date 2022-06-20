@@ -2,10 +2,10 @@
     "header":{
         "MOVIES" : "PELÍCULAS",
         "TVSHOWS" : "SERIES",
-        "REGISTER" : "REGISTRARSE",
+        "REGISTER" : "REGISTRAR",
         "LOGIN" : "ACCEDER",
         "WELCOME" : "Bienvenid@",
-        "WELCOME_MESSAGE" : "Millones de películas, series y personas por descubrir.",
+        "WELCOME_MESSAGE" : "millones de películas y series por descubrir.",
         "UPCOMING_MOVIES":"PROXIMOS ESTRENOS",
         "MOVIES_TRENDING":"TENDENCIAS",
         "MOVIES_MOST_POPULAR":"PELíCULAS MÁS POPULARES",

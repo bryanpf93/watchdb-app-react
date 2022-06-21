@@ -16,6 +16,6 @@ export const getMoviePopular = (res) => {
 }
 
 export const getPopularTvShows = (res) => {
-    const movies = res.results;
-    return movies.map(movie => mapperMedia(movie, 'tv'));
+    const tv = res.results;
+    return tv.map(tv => mapperMedia(tv, 'tv'));
 }

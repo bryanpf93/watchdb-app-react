@@ -8,7 +8,7 @@ export const mapperMedia = (data, type) => {
     const mediaType = media_type || type;
     const title = mediaType === 'movie' ? data.title : data.name;
     const date = mediaType === 'movie' ? data.release_date : data.first_air_date;
-    const route = mediaType === 'movie' ? `/movies` : `/tv`;
+    const route = mediaType === 'movie' ? `movies` : `tv`;
 
     return {
         id,

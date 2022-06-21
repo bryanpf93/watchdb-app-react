@@ -50,11 +50,8 @@ function Header() {
     <header className='header-container'>
       <Navbar bg="primary" expand="lg">
         <Container>
-          <Navbar.Brand href="/" className="fs-1">WATCHDB</Navbar.Brand>
-          <Navbar.Toggle />
-          <Navbar.Collapse id="basic-navbar-nav" class='justify-content-end' >
-            <Nav className="me-auto">
-              <ButtonGroup className="me-2" aria-label="First group">
+          <Navbar.Brand href="/" className="fs-1 ">WATCHDB</Navbar.Brand>
+          <ButtonGroup className="me-2" aria-label="First group">
                 <Button onClick={() => i18n.changeLanguage('es')}>ES</Button>
                 <Button onClick={() => i18n.changeLanguage('en')}>EN</Button>
               </ButtonGroup>
@@ -66,6 +63,10 @@ function Header() {
                   checked={theme==='dark'}
                 />
               </Form>
+          <Navbar.Toggle />
+          <Navbar.Collapse id="basic-navbar-nav" class='justify-content-end' >
+            <Nav className="me-auto">
+              
               <InputGroup className="d-flex ">
                 <InputGroup.Text id="basic-addon1"><FcSearch></FcSearch></InputGroup.Text>
                 <FormControl

@@ -4,6 +4,8 @@ import './styles.css'
 import { FaListUl } from 'react-icons/fa';
 import { MdFavorite } from 'react-icons/md';
 import { BsFillPlayFill } from 'react-icons/bs'
+import CardCredits from '../../components/card-credits';
+import { Col, Row } from 'react-bootstrap';
 
 function MoviesDetails() {
 
@@ -36,7 +38,7 @@ function MoviesDetails() {
         <div>
             {loading ? <div>Loading...</div> :
                 <div className="row p-5 mt-5 bg-danger">
-                    <img className='movie-image col-md-4' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} width={300} height={450} />
+                    <img className='movie-image col-md-3' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} width={300} height={450} />
                     <div className="movie-info col-md">
                         <h1>{movie.title}</h1>
                         <p>{movie.release_date}</p>
@@ -58,12 +60,44 @@ function MoviesDetails() {
 
                 </div>}
 
-                <div>
-                    
-                </div>
+            <h3 className='mt-5 mb-4'>Actores</h3>
+            {/* <div className='actors'>
+                {movie?.credits?.cast?.map(actor => <div key={actor.id} className='actor'>
+                    <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} alt={actor.name} width={100} height={150} />
+                    <p>{actor.name}</p>
+                </div>)}
+            </div>
 
-              
-              
+            <div className='actors'>
+                {movie?.credits?.cast?.map(actor => <CardCredits key={actor.id}></CardCredits>)}
+            </div> */}
+
+            {/* <Row xs={2} md={2} lg={4} xl={5} className="g-4">
+                {mostPopularMovies && mostPopularMovies.map(movie =>
+                    <Col key={movie.id}><Card {...movie}></Card></Col>)}
+            </Row> */}
+
+            <Row xs={3} md={4} lg={6} xl={8} className="g-4">
+                {(movie?.credits?.cast?.slice(0,12))?.map(actor =>
+                    <Col key={actor.id}><CardCredits {...actor}></CardCredits></Col>)}
+            </Row>
+
+
+            <h3 className='mt-5 mb-4'>Videos</h3>
+            <Row  className='videos mb-5'>
+                {movie?.videos?.results?.map(video => <Col><div key={video.id} className='video'>
+                    <iframe width="480" height="315" src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                </div></Col> )}
+             </Row>       
+
+             
+
+
+
+
+
+
+
 
         </div>
     )

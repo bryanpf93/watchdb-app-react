@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { Carousel, Col, Row } from "react-bootstrap";
 import Card from "../../components/card";
 
-const MAX_ITEMS_SLIDER = 4;
+const MAX_ITEMS_SLIDER = 10;
 
 function Home() {
   const { t } = useTranslation('global');
@@ -49,7 +49,7 @@ function Home() {
 
         <div className="title-home mt-5">
           <span className="title-icon">{<HiTrendingUp></HiTrendingUp>}</span>
-          <span>{t('header.UPCOMING_MOVIES')}</span>
+          <span>{t('header.MOVIES_TRENDING')}</span>
         </div>
         <Row xs={2} md={2} lg={4} xl={5} className="g-4">
           {trending && (trending.slice(0, MAX_ITEMS_SLIDER)).map(media =>
@@ -59,7 +59,7 @@ function Home() {
 
         <div className="title-home mt-5">
           <span className="title-icon">{<MdUpcoming></MdUpcoming>}</span>
-          <span>{t('header.UPCOMING_MOVIES')}</span>
+          <span><Link className="title" to={'/upcoming'}>{t('header.UPCOMING_MOVIES')}</Link></span>
         </div>
         <Row xs={2} md={2} lg={4} xl={5} className="g-4">
           {upComingMovies && (upComingMovies.slice(0, MAX_ITEMS_SLIDER)).map(movie =>

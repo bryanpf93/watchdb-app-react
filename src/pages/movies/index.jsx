@@ -10,6 +10,7 @@ function Movies() {
     const { t } = useTranslation('global');
 
     const { data: mostPopularMovies } = useFetchMedia('movie/popular', getMovieUpcoming);
+    
 
     return (
 

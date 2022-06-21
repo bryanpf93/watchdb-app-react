@@ -18,6 +18,7 @@ import { useContext } from 'react';
 import { ThemeContext } from './contexts/theme.context';
 import MoviesDetails from './pages/movies-details';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import UpComing from './pages/upcoming';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
             <Route path="/" element={<Home></Home>} /> {/* /*/}
             <Route path='/movies' element={<Movies></Movies>}></Route>
             <Route path='/movies/:id' element={<MoviesDetails></MoviesDetails>}></Route>
+            <Route path='/upcoming' element={<UpComing></UpComing>}></Route>
             <Route path='/series' element={<Series></Series>}></Route>
             <Route path='/validate' element={<Validate />}></Route>
             <Route path='/user' element={<RequireAuth><User /></RequireAuth>}></Route>

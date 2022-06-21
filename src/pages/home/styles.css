@@ -45,3 +45,7 @@
     text-align: start;
     margin-bottom: 20px;
 }
+
+.carousel-item{
+    height: 300px;
+}

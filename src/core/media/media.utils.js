@@ -20,3 +20,5 @@ export const mapperMedia = (data, type) => {
         date: date
     };
 }
+
+

@@ -14,7 +14,7 @@ function Movies() {
     return (
 
         <>
-            <h2 className='mt-5 m-5'>{t('header.MOVIES_MOST_POPULAR')}</h2>
+            <h3 className='mt-5'>{t('header.MOVIES_MOST_POPULAR')}</h3>
 
             <Row xs={2} md={2} lg={4} xl={5} className="g-4">
                 {mostPopularMovies && mostPopularMovies.map(movie =>

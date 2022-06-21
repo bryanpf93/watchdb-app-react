@@ -4,12 +4,13 @@ import { useFetchMedia } from "../../hooks/useFetchMedia";
 import { MdUpcoming } from 'react-icons/md';
 import { BiMoviePlay } from 'react-icons/bi';
 import { BsDisplayFill } from 'react-icons/bs';
+import { HiTrendingUp } from 'react-icons/hi'
 import './styles.css'
 import { Link } from "react-router-dom";
-import { Carousel } from "react-bootstrap";
+import { Carousel, Col, Row } from "react-bootstrap";
 import Card from "../../components/card";
 
-const MAX_ITEMS_SLIDER = 3;
+const MAX_ITEMS_SLIDER = 4;
 
 function Home() {
   const { t } = useTranslation('global');
@@ -22,13 +23,15 @@ function Home() {
   return (
     <>
       <main className='container-fluid'>
-        <div className='m-3 d-flex align-items-center'>
+
+        <div className='mb-3 mt-5 d-flex align-items-center'>
           <h2>{t('header.WELCOME')},{t('header.WELCOME_MESSAGE')}</h2>
         </div>
-        <Carousel className='w-75 d-flex m-auto'>
+
+        <Carousel className='w-100 d-flex m-auto'>
           {mostPopularMovies && (mostPopularMovies.slice(0, MAX_ITEMS_SLIDER))
             .map(({ id, title, backdrop }) =>
-              <Carousel.Item key={id} interval={2000}>
+              <Carousel.Item key={id} interval={2000} className='carousel-item'>
                 <img
                   className="d-block w-100"
                   src={backdrop}
@@ -43,43 +46,55 @@ function Home() {
               </Carousel.Item>)}
         </Carousel>
 
-        <div className="home-trending">
-          {trending && (trending.slice(0, MAX_ITEMS_SLIDER)).map(media =>
-            <Card key={media.id} {...media}></Card>
-          )}
-        </div>
 
-        <div className="title-home mt-5 m-3">
+        <div className="title-home mt-5">
+          <span className="title-icon">{<HiTrendingUp></HiTrendingUp>}</span>
+          <span>{t('header.UPCOMING_MOVIES')}</span>
+        </div>
+        <Row xs={2} md={2} lg={4} xl={5} className="g-4">
+          {trending && (trending.slice(0, MAX_ITEMS_SLIDER)).map(media =>
+            <Col key={media.id}><Card {...media}></Card></Col>)}
+        </Row>
+
+
+        <div className="title-home mt-5">
           <span className="title-icon">{<MdUpcoming></MdUpcoming>}</span>
           <span>{t('header.UPCOMING_MOVIES')}</span>
         </div>
-        <div className='d-flex home-upcoming m-5 '>
+        <Row xs={2} md={2} lg={4} xl={5} className="g-4">
           {upComingMovies && (upComingMovies.slice(0, MAX_ITEMS_SLIDER)).map(movie =>
-            <Card key={movie.id} {...movie}></Card>
-          )}
-        </div>
+            <Col key={movie.id}><Card {...movie}></Card></Col>)}
+        </Row>
+        
 
-
-        <div className="title-home mt-5 m-3">
+        <div className="title-home mt-5">
           <span className="title-icon">{<BiMoviePlay></BiMoviePlay>}</span>
           <span><Link className="title" to={'/movies'}>{t('header.MOVIES_MOST_POPULAR')}</Link></span>
         </div>
-        <div className="d-flex home-popular m-5">
+        <Row xs={2} md={2} lg={4} xl={5} className="g-4">
+          {mostPopularMovies && (mostPopularMovies.slice(0, MAX_ITEMS_SLIDER)).map(movie =>
+            <Col key={movie.id}><Card {...movie}></Card></Col>)}
+        </Row>
+        {/* <div className="d-flex home-popular m-5">
           {mostPopularMovies && (mostPopularMovies.slice(0, MAX_ITEMS_SLIDER)).map(movie =>
             <Card key={movie.id} {...movie}></Card>
           )}
-        </div>
+        </div> */}
+        
 
-
-        <div className="title-home mt-5 m-3">
+        <div className="title-home mt-5">
           <span className="title-icon">{<BsDisplayFill></BsDisplayFill>}</span>
           <span><Link className="title" to={'/series'}>{t('header.TVSHOWS_MOST_POPULAR')}</Link></span>
         </div>
-        <div className="d-flex home-popular m-5">
+        <Row xs={2} md={2} lg={4} xl={5} className="g-4">
+          {popularTvShows && (popularTvShows.slice(0, MAX_ITEMS_SLIDER)).map(serie =>
+            <Col key={serie.id}><Card {...serie}></Card></Col>)}
+        </Row>
+        {/* <div className="d-flex home-popular m-5">
           {popularTvShows && (popularTvShows.slice(0, MAX_ITEMS_SLIDER)).map(serie =>
             <Card key={serie.id} {...serie}></Card>
           )}
-        </div>
+        </div> */}
       </main>
     </>
   );

@@ -8,10 +8,13 @@
     border-radius: 20px;
     overflow: hidden;
     text-decoration: none;
+    color: black;
+    height: 400px;
+    justify-content: center;
 }
 
 .card:hover {
-    transform: scale(1.01);
+    transform: scale(1.03);
 }
 
 .card-image {
@@ -22,14 +25,22 @@
     background-size: cover;
 }
 
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .card-title {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 2;
+    font-size: 1.3rem;
 }
 
 .card-date {
-    color: #5A3AE9;
+    color: gray;
+    font-size: 1.2rem;
 }

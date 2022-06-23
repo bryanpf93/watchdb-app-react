@@ -3,11 +3,13 @@ import './styles.css'
 
 function CardCredits(actor) {
     return (
-        <>
+        <>  
+            <Link to={`/person/${actor.id}`}>
             <div className='credits'>
                 <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} alt={actor.name} width={135} height={180} />
                 <p>{actor.name}</p>
             </div>
+            </Link>
 
             {/* <Link className="credit" to={'/'}>
                 <div

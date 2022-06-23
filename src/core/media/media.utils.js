@@ -3,7 +3,7 @@ import _ from 'lodash';
 const IMAGE_BASE_URL = process.env.REACT_APP_IMAGE_BASE_URL;
 const BACKDROP_BASE_URL = process.env.REACT_APP_BACKDROP_BASE_URL;
 
-export const mapperMedia = (data, type) => {
+export const mapperMedia = (data, type, favorites = []) => {
     const { id, backdrop_path, poster_path, overview, media_type } = data;
     const mediaType = media_type || type;
     const title = mediaType === 'movie' ? data.title : data.name;
@@ -17,8 +17,8 @@ export const mapperMedia = (data, type) => {
         backdrop: `${BACKDROP_BASE_URL}${backdrop_path}`,
         title,
         description: overview,
-        date: date
+        date: date,
+        type: mediaType,
+        favorite: !!favorites.find(f => f.id === id)
     };
 }
-
-

@@ -5,16 +5,16 @@ import { useTranslation } from 'react-i18next';
 import { useContext } from 'react';
 import { ThemeContext } from '../../contexts/theme.context';
 import { FcSearch } from 'react-icons/fc';
+import { useAuth } from '../../core/auth/auth.hook';
 
 
 
 function Header() {
-
+  const { isAuth } = useAuth();
   const [theme, setTheme] = useContext(ThemeContext);
   const { t, i18n } = useTranslation('global');
 
 
-  console.log(setTheme);
   const handleChange = (e) => {
     const checked = e.target.checked;
     const theme = checked ? 'dark' : 'light';
@@ -49,7 +49,7 @@ function Header() {
     </header> */}
     <header className='header-container'>
       <Navbar bg="primary" expand="lg">
-        <Container>
+        <Container className='wrapper-header'>
           <Navbar.Brand href="/" className="fs-1 ">WATCHDB</Navbar.Brand>
           <ButtonGroup className="me-2" aria-label="First group">
                 <Button onClick={() => i18n.changeLanguage('es')}>ES</Button>
@@ -75,8 +75,16 @@ function Header() {
                   aria-describedby="basic-addon1"
                 />
               </InputGroup>
-              <Nav.Link href="/auth/register" className='d-flex align-items-center'>{t('header.REGISTER')}</Nav.Link>
-              <Nav.Link href="/auth/login" className='d-flex align-items-center'>{t('header.LOGIN')}</Nav.Link>
+
+              { isAuth
+                ? <h5>Hola</h5>
+                : (
+                  <>
+                    <Nav.Link href="/auth/register" className='d-flex align-items-center'>{t('header.REGISTER')}</Nav.Link>
+                    <Nav.Link href="/auth/login" className='d-flex align-items-center'>{t('header.LOGIN')}</Nav.Link>
+                  </>
+                  )
+              }
             </Nav>
           </Navbar.Collapse>
         </Container>

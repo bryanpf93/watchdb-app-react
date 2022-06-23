@@ -2,6 +2,7 @@ import { Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import Card from '../../components/card';
 import {  getPopularTvShows } from '../../core/media/media.services';
+import { useUser } from '../../core/users/users.hook';
 import { useFetchMedia } from '../../hooks/useFetchMedia';
 // import TvPopular from '../home/components-home/tv-popular';
 import './styles.css'
@@ -9,8 +10,9 @@ import './styles.css'
 function Series() {
 
     const { t } = useTranslation('global');
+    const { favorites } = useUser();
 
-    const { data: popularTvShows } = useFetchMedia('tv/popular', getPopularTvShows);
+    const { data: popularTvShows } = useFetchMedia('tv/popular', getPopularTvShows, favorites);
 
     console.log(popularTvShows);
 

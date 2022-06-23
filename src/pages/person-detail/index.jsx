@@ -3,6 +3,7 @@ import { BsFillPlayFill } from 'react-icons/bs'
 import { FaListUl } from 'react-icons/fa'
 import { MdFavorite } from 'react-icons/md'
 import { useParams } from 'react-router-dom'
+import Movies from '../movies'
 import './styles.css'
 
 function PersonDetail() {
@@ -38,7 +39,7 @@ function PersonDetail() {
         <>
             {loading ? <div>Loading...</div> :
                 <div className="row p-5 mt-5 bg-danger">
-                    <img className='movie-image col-md-3' src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`} alt={person.name} width={300} height={450} />
+                    <img className='movie-image col-md-3' src={person.profile_path?`https://image.tmdb.org/t/p/w500/${person.profile_path}`: 'https://previews.123rf.com/images/mathier/mathier1905/mathier190500002/134557216-sin-imagen-en-miniatura-marcador-de-posici%C3%B3n-para-foros-blogs-y-sitios-web.jp'} alt={'https://previews.123rf.com/images/mathier/mathier1905/mathier190500002/134557216-sin-imagen-en-miniatura-marcador-de-posici%C3%B3n-para-foros-blogs-y-sitios-web.jpg'} width={300} height={450} />
                     <div className="movie-info col-md">
                         <h1>{person.name}</h1>
                         <p>{person.birthday}</p>

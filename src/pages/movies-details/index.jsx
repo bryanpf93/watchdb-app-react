@@ -6,6 +6,7 @@ import { MdFavorite } from 'react-icons/md';
 import { BsFillPlayFill } from 'react-icons/bs'
 import CardCredits from '../../components/card-credits';
 import { Col, Row } from 'react-bootstrap';
+import Slider from 'react-slick';
 
 function MoviesDetails() {
 
@@ -33,6 +34,44 @@ function MoviesDetails() {
     }, [id])
 
     console.log(movie)
+
+    var settings = {
+        dots: true,
+        infinite: true,
+        autoplay: true,
+        speed: 2000,
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        initialSlide: 0,
+        autoplaySpeed: 5000,
+        cssEase: "linear",
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 2,
+              infinite: true,
+              dots: true
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              initialSlide: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      };
 
     return (
         <div>
@@ -76,11 +115,17 @@ function MoviesDetails() {
                 {mostPopularMovies && mostPopularMovies.map(movie =>
                     <Col key={movie.id}><Card {...movie}></Card></Col>)}
             </Row> */}
-
-            <Row xs={3} md={4} lg={6} xl={8} className="g-4">
+            
+            {/* <Row xs={3} md={4} lg={6} xl={8} className="g-4">
                 {(movie?.credits?.cast?.slice(0,12))?.map(actor =>
                     <Col key={actor.id}><CardCredits {...actor}></CardCredits></Col>)}
-            </Row>
+            </Row> */}
+
+            <Slider {...settings}>
+               {movie?.credits?.cast?.map(actor => <CardCredits key={actor.id} {...actor}></CardCredits>)}
+
+            </Slider>
+            
 
 
             <h3 className='mt-5 mb-4'>Videos</h3>

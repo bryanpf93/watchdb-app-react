@@ -46,6 +46,18 @@
     margin-bottom: 20px;
 }
 
+.carousel{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
 .carousel-item{
-    height: 420px;
+    height: 350px;
+}
+
+.slider{
+    gap: 25px;
 }

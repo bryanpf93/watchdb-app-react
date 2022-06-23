@@ -5,6 +5,10 @@
     color: white;
 }
 
+.wrapper-header{
+    display: flex;
+}
+
 .nav-container{
     text-decoration: none;
     color:white;

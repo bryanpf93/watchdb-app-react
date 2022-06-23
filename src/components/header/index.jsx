@@ -6,6 +6,8 @@ import { useContext } from 'react';
 import { ThemeContext } from '../../contexts/theme.context';
 import { FcSearch } from 'react-icons/fc';
 import { useAuth } from '../../core/auth/auth.hook';
+import { BsSun }  from 'react-icons/bs';
+import { BiMoon } from 'react-icons/bi';
 
 
 
@@ -48,20 +50,22 @@ function Header() {
       </nav>
     </header> */}
     <header className='header-container'>
-      <Navbar bg="primary" expand="lg">
+      <Navbar bg="danger" expand="lg">
         <Container className='wrapper-header'>
-          <Navbar.Brand href="/" className="fs-1 ">WATCHDB</Navbar.Brand>
+          <Navbar.Brand href="/" className="fs-1 fw-bold">WATCHDB</Navbar.Brand>
           <ButtonGroup className="me-2" aria-label="First group">
                 <Button onClick={() => i18n.changeLanguage('es')}>ES</Button>
                 <Button onClick={() => i18n.changeLanguage('en')}>EN</Button>
               </ButtonGroup>
               <Form className='d-flex align-items-center'>
+                <nav className='me-2'><BsSun></BsSun></nav>
                 <Form.Check
                   type="switch"
                   id="custom-switch"
                   onChange={handleChange} 
                   checked={theme==='dark'}
                 />
+                <nav><BiMoon></BiMoon></nav>
               </Form>
           <Navbar.Toggle />
           <Navbar.Collapse id="basic-navbar-nav" class='justify-content-end' >
@@ -80,8 +84,8 @@ function Header() {
                 ? <h5>Hola</h5>
                 : (
                   <>
-                    <Nav.Link href="/auth/register" className='d-flex align-items-center'>{t('header.REGISTER')}</Nav.Link>
-                    <Nav.Link href="/auth/login" className='d-flex align-items-center'>{t('header.LOGIN')}</Nav.Link>
+                    <Nav.Link href="/auth/register" className='d-flex align-items-center register-login'>{t('header.REGISTER')}</Nav.Link>
+                    <Nav.Link href="/auth/login" className='d-flex align-items-center register-login'>{t('header.LOGIN')}</Nav.Link>
                   </>
                   )
               }

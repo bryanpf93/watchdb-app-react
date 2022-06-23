@@ -29,12 +29,13 @@
 .title-icon{
     display: flex;
     margin-right: 10px;
-    color: #5A3AE9;
+    color: #dc3544;
     align-items: center;
 }
 
 .title{
     text-decoration: none;
+    color: black;
 }
 
 .description-movie{
@@ -55,9 +56,5 @@
 }
 
 .carousel-item{
-    height: 350px;
-}
-
-.slider{
-    gap: 25px;
+    height: 450px;
 }

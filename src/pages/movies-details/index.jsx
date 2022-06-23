@@ -5,7 +5,7 @@ import { FaListUl } from 'react-icons/fa';
 import { MdFavorite } from 'react-icons/md';
 import { BsFillPlayFill } from 'react-icons/bs'
 import CardCredits from '../../components/card-credits';
-import { Col, Row } from 'react-bootstrap';
+import { Button, Col, Modal, Row } from 'react-bootstrap';
 import Slider from 'react-slick';
 
 function MoviesDetails() {
@@ -46,32 +46,36 @@ function MoviesDetails() {
         autoplaySpeed: 5000,
         cssEase: "linear",
         responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 3,
-              slidesToScroll: 2,
-              infinite: true,
-              dots: true
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 2,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1
+                }
             }
-          },
-          {
-            breakpoint: 600,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2,
-              initialSlide: 2
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
         ]
-      };
+    };
+
+   
+
+    console.log(movie)
 
     return (
         <div>
@@ -115,27 +119,33 @@ function MoviesDetails() {
                 {mostPopularMovies && mostPopularMovies.map(movie =>
                     <Col key={movie.id}><Card {...movie}></Card></Col>)}
             </Row> */}
-            
+
             {/* <Row xs={3} md={4} lg={6} xl={8} className="g-4">
                 {(movie?.credits?.cast?.slice(0,12))?.map(actor =>
                     <Col key={actor.id}><CardCredits {...actor}></CardCredits></Col>)}
             </Row> */}
 
             <Slider {...settings}>
-               {movie?.credits?.cast?.map(actor => <CardCredits key={actor.id} {...actor}></CardCredits>)}
+                {(movie?.credits?.cast?.slice(0, 20))?.map(actor => <CardCredits key={actor.id} {...actor}></CardCredits>)}
 
             </Slider>
-            
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+
 
 
             <h3 className='mt-5 mb-4'>Videos</h3>
-            <Row  className='videos mb-5'>
+            <Row className='videos mb-5'>
                 {movie?.videos?.results?.map(video => <Col><div key={video.id} className='video'>
-                    <iframe width="480" height="315" src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                </div></Col> )}
-             </Row>       
+                    <iframe width="350" height="185" src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                </div></Col>)}
+            </Row>
 
-             
+
+            JDYdGnpmsgo
+
 
 
 

@@ -16,7 +16,7 @@ function Card({ title, date, image, to, favorite, onFavorite }) {
         <div className="card">
             <Link to={to}
                 className='card-image'
-                style={{ backgroundImage: `url(${image})` }}
+                style={{ backgroundImage: `url(${image?image:'https://previews.123rf.com/images/mathier/mathier1905/mathier190500002/134557216-sin-imagen-en-miniatura-marcador-de-posici%C3%B3n-para-foros-blogs-y-sitios-web.jpg'})` }}
             ></Link>
             <div className='card-body'>
                 <h3 className='card-title'>{title}</h3>

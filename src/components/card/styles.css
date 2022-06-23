@@ -48,7 +48,8 @@
 .favorite{
     width: 40px;
     height: 40px;
-    background-color: #0A0069;
+    background-color: #DC3544;
+    border: none;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -61,5 +62,5 @@
 }
 
 .favorite:hover{
-    color: #3366FF;
+    transform: scale(1.1);
 }

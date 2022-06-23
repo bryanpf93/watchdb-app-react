@@ -7,10 +7,11 @@ import { BsDisplayFill } from 'react-icons/bs';
 import { HiTrendingUp } from 'react-icons/hi'
 import './styles.css'
 import { Link } from "react-router-dom";
-import { Carousel, Col, Row } from "react-bootstrap";
+import { Button, Carousel, Col, Modal, Row } from "react-bootstrap";
 import Card from "../../components/card";
 import { useUser } from "../../core/users/users.hook";
 import Slider from "react-slick";
+import { useState } from "react";
 
 const MAX_ITEMS_SLIDER = 10;
 
@@ -66,12 +67,17 @@ function Home() {
     ]
   };
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <>
       <main className='container-fluid'>
 
         <div className='mb-3 mt-5 d-flex align-items-center'>
-          <h2>{t('header.WELCOME')},{t('header.WELCOME_MESSAGE')}</h2>
+          <h2>{t('header.WELCOME')}, {t('header.WELCOME_MESSAGE')}</h2>
         </div>
 
         <Carousel>
@@ -86,7 +92,16 @@ function Home() {
                 <Carousel.Caption>
                   <div className="description-movie">
                     <h3>{title}</h3>
-                    <button >VER TRAILER</button>
+                    <Button variant="danger" onClick={handleShow}>
+                      VER TRAILER
+                    </Button>
+
+                    <Modal show={show} onHide={handleClose}>
+                      <Modal.Body>
+                        <iframe width="450" height="300" src={'https://www.youtube.com/embed/JDYdGnpmsgo'} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                      </Modal.Body>
+
+                    </Modal>
                   </div>
                 </Carousel.Caption>
               </Carousel.Item>)}
@@ -133,7 +148,7 @@ function Home() {
           {mostPopularMovies && (mostPopularMovies.slice(0, MAX_ITEMS_SLIDER)).map(media =>
             <Card key={media.id} {...media} onFavorite={() => handleFavorite(media)}></Card>)}
         </Slider>
-        
+
 
 
         <div className="title-home mt-5">

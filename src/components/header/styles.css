@@ -26,5 +26,6 @@
 
 .register-login{
     display: flex;
+    font-weight: bold;
 }
 

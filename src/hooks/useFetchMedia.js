@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useAuth } from "../core/auth/auth.hook";
 
 const API_KEY = process.env.REACT_APP_API_KEY_MOVIE_DB;
@@ -14,17 +14,22 @@ export function useFetchMedia(path, fetcher, favorites) {
         if (!isAuth) {
             fetching();
         } else {
-            if (favorites && favorites.length) {
+            if (favorites) {
                 fetching();
             }
         }
     }, [path, favorites])
 
-    const fetching = () => {
+    const fetching = useCallback(() => {
+        let url = new URL(`${BASE_URL}/${path}`);
+        url.searchParams.append('api_key', API_KEY);
+        url.searchParams.append('language', 'es');
+        url.searchParams.append('region', 'ES');
+
         setLoading(true);
         setData(null);
         setError(null);
-        fetch(`${BASE_URL}/${path}?api_key=${API_KEY}&language=es&region=ES`)
+        fetch(url)
             .then(res => res.json())
             .then(res => {
                 setLoading(false);
@@ -34,7 +39,7 @@ export function useFetchMedia(path, fetcher, favorites) {
                 setLoading(false);
                 setError(error);
             });
-    }
+    }, [favorites])
 
     return { data, loading, error };
 }

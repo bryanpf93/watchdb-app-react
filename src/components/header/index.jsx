@@ -6,8 +6,9 @@ import { useContext } from 'react';
 import { ThemeContext } from '../../contexts/theme.context';
 import { FcSearch } from 'react-icons/fc';
 import { useAuth } from '../../core/auth/auth.hook';
-import { BsSun }  from 'react-icons/bs';
+import { BsFillSunFill, BsSun } from 'react-icons/bs';
 import { BiMoon } from 'react-icons/bi';
+import { MdDarkMode } from 'react-icons/md';
 
 
 
@@ -25,33 +26,51 @@ function Header() {
 
   return (
     <>
-      {/* <header className='header_container'>
-      <div className='logo'>
-        <h1><Link className='nav-container' to='/'>WATCHDB</Link></h1>
-      </div>
-      <nav className='peliculas-series'>
-        <h4><Link className='nav-container' to="/movies">{t('header.MOVIES')}</Link></h4>
-        <h4><Link className='nav-container' to="/series">{t('header.TVSHOWS')}</Link></h4>
-      </nav>
-      <div>
-        <button onClick={() => i18n.changeLanguage('es')} >ES</button>
-        <button onClick={() => i18n.changeLanguage('en')}>EN</button>
-      </div>
-      <div>
-        <label className='switch'>
-          <input  type="checkbox" onChange={handleChange} checked={theme==='dark'}></input>
-          <span className='slider round'></span>
-        </label>
-      </div>
-      <input type="text" placeholder={t('header.SEARCH_LABEL')} />
-      <nav className='register-login'>
-        <h4><Link className='nav-container' to="/auth/register">{t('header.REGISTER')}</Link></h4>
-        <h4><Link className='nav-container' to="/auth/login">{t('header.LOGIN')}</Link></h4>
-      </nav>
-    </header> */}
-    <header className='header-container'>
+      <header className='header-container'>
+          <div className='nav'>
+            <h1><Link className='logo' to='/'>WATCHDB</Link></h1>
+          </div>
+          <div className='nav-toggle'>
+            <div>
+              <button className='button' onClick={() => i18n.changeLanguage('es')} >ES</button>
+              <button className='button' onClick={() => i18n.changeLanguage('en')}>EN</button>
+            </div>
+            <div className='theme'>
+              {/* <nav className='me-2 mb-1 sun'><BsFillSunFill></BsFillSunFill></nav> */}
+              <Form>
+                <Form.Check
+                  type="switch"
+                  id="custom-switch"
+                  onChange={handleChange}
+                  checked={theme === 'dark'}
+                />
+              </Form>
+              {/* <nav className='mb-1 moon'><MdDarkMode></MdDarkMode></nav> */}
+            </div>
+            <div>
+              <InputGroup className="d-flex ">
+                <InputGroup.Text id="basic-addon1"><FcSearch></FcSearch></InputGroup.Text>
+              </InputGroup>
+            </div>
+
+            {isAuth
+              ? <h5>Hola</h5>
+              : (
+                <>
+                  <nav className='register-login'>
+                    <h4><Link className='header-text' to="/auth/register">{t('header.REGISTER')}</Link></h4>
+                    <h4><Link className='header-text' to="/auth/login">{t('header.LOGIN')}</Link></h4>
+                  </nav>
+                </>
+              )
+            }
+          </div>
+
+        
+      </header>
+      {/* <header className='header-container'>
       <Navbar bg="danger" expand="lg">
-        <Container className='wrapper-header'>
+        <Container>
           <Navbar.Brand href="/" className="fs-1 fw-bold">WATCHDB</Navbar.Brand>
           <ButtonGroup className="me-2" aria-label="First group">
                 <Button onClick={() => i18n.changeLanguage('es')}>ES</Button>
@@ -68,7 +87,7 @@ function Header() {
                 <nav><BiMoon></BiMoon></nav>
               </Form>
           <Navbar.Toggle />
-          <Navbar.Collapse id="basic-navbar-nav" class='justify-content-end' >
+          <Navbar.Collapse id="basic-navbar-nav" className='justify-content-end' >
             <Nav className="me-auto">
               
               <InputGroup className="d-flex ">
@@ -93,7 +112,7 @@ function Header() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      </header>
+      </header> */}
     </>
   )
 }

@@ -2,21 +2,59 @@
     top: 0;
     position: sticky;
     z-index: 5;
-    color: white;
-}
-
-.wrapper-header{
+    color: black;
     display: flex;
+    flex-direction: row;
+    background-color: #dc3544;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.nav-container{
+.nav{
+    width: 35%;
+}
+
+
+.nav-toggle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 65%;
+}
+
+.button{
+    font-weight: bold;
+}
+
+.logo{
     text-decoration: none;
-    color:white;
+    color:black;
     padding: 20px;
+    font-weight: bold;
 }
 
-.peliculas-series{
+.header-text{
+    text-decoration: none;
+    color:black;
+    padding: 20px;
+    font-size: 1rem;
+}
+
+.theme{
     display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.sun{
+    color: #FFD400;
+}
+
+.moon{
+    color: black;
 }
 
 .toggle{
@@ -27,5 +65,5 @@
 .register-login{
     display: flex;
     font-weight: bold;
+    flex-wrap: wrap;
 }
-

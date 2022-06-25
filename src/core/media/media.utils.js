@@ -13,8 +13,8 @@ export const mapperMedia = (data, type, favorites = []) => {
     return {
         id,
         to: `/${route}/${id}`,
-        image: `${IMAGE_BASE_URL}${poster_path}`,
-        backdrop: `${BACKDROP_BASE_URL}${backdrop_path}`,
+        image: poster_path ? `${IMAGE_BASE_URL}${poster_path}` : '',
+        backdrop: backdrop_path ? `${BACKDROP_BASE_URL}${backdrop_path}` : '',
         title,
         description: overview,
         date: date,

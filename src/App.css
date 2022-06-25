@@ -1,9 +1,11 @@
 .light {
   --background-color: #E2DEDE;
+  --color-text: #000;
 }
 
 .dark {
   --background-color: #292828;
+  --color-text: #FFF;
 }
 
 .app {

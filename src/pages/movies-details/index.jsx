@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './styles.css'
 import { FaListUl } from 'react-icons/fa';
-import { MdFavorite } from 'react-icons/md';
+import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { BsFillPlayFill } from 'react-icons/bs'
 import CardCredits from '../../components/card-credits';
 import { Button, Col, Modal, Row } from 'react-bootstrap';
 import Slider from 'react-slick';
+import { useUser } from '../../core/users/users.hook';
 
 function MoviesDetails() {
 
@@ -14,6 +15,8 @@ function MoviesDetails() {
     const [movie, setMovie] = useState({})
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
+
+    const { isFavorite, toggleFavorite } = useUser();
 
     const API_KEY = process.env.REACT_APP_API_KEY_MOVIE_DB
 
@@ -32,8 +35,6 @@ function MoviesDetails() {
             }
             )
     }, [id])
-
-    console.log(movie)
 
     var settings = {
         dots: true,
@@ -73,13 +74,9 @@ function MoviesDetails() {
         ]
     };
 
-   
-
-    console.log(movie)
-
     return (
         <div>
-            {loading ? <div>Loading...</div> :
+            {/* {loading ? <div>Loading...</div> :
                 <div className="row p-5 mt-5 bg-danger">
                     <img className='movie-image col-md-3' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} width={300} height={450} />
                     <div className="movie-info col-md">
@@ -89,8 +86,8 @@ function MoviesDetails() {
                         <div className='genres'>{movie.genres.map(genre => <div key={genre.name} genre={genre} className='genre'>{genre.name}</div>)}</div>
 
                         <div className='buttons'>
-                            <div className='circle'><FaListUl></FaListUl></div>
-                            <div className='circle'><MdFavorite></MdFavorite></div>
+                            {isFavorite(movie) && <div className='circle' onClick={() => toggleFavorite(movie)}><MdFavorite></MdFavorite></div>}
+                            {!isFavorite(movie) && <div className='circle' onClick={() => toggleFavorite(movie)}><MdFavoriteBorder></MdFavoriteBorder></div>}
                             <div className='trailer'>
                                 <span className='play'><BsFillPlayFill></BsFillPlayFill></span>
                                 <button className='play-trailer'>Reproducir trailer</button>
@@ -101,7 +98,17 @@ function MoviesDetails() {
 
                     </div>
 
-                </div>}
+                </div>} */}
+
+                <Row>
+                    <Col>
+                        <div className='path-image' style={{}}></div>
+                    </Col>
+                    <Col>
+                        <div className='back-image'></div>
+                    </Col>
+
+                </Row>
 
             <h3 className='mt-5 mb-4'>Actores</h3>
             {/* <div className='actors'>
@@ -138,13 +145,13 @@ function MoviesDetails() {
 
             <h3 className='mt-5 mb-4'>Videos</h3>
             <Row className='videos mb-5'>
-                {movie?.videos?.results?.map(video => <Col><div key={video.id} className='video'>
-                    <iframe width="350" height="185" src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                {movie?.videos?.results?.map(video => <Col key={video.id}><div className='video'>
+                    <iframe width="300" height="185" src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 </div></Col>)}
             </Row>
 
 
-            JDYdGnpmsgo
+        
 
 
 

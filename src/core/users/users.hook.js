@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useAuth } from "../auth/auth.hook";
-import { addUserFavoritesAPI, getUserFavoritesAPI, getUserInfoAPI } from "./users.api"
+import { addUserFavoritesAPI, getUserFavoritesAPI, getUserInfoAPI, removeUserFavoritesAPI } from "./users.api"
 
 
 export const useUser = () => {
@@ -9,14 +9,13 @@ export const useUser = () => {
     const [favorites, setFavorites] = useState([]);
 
     useEffect(() => {
-        if (useAuth) {
+        if (isAuth) {
             getUser()
 
             if (userId) {
                 getFavorites()
             }
         }
-
     }, [isAuth, userId]);
 
     const getUser = async () => {
@@ -31,11 +30,31 @@ export const useUser = () => {
 
     const addFavorite = async (media) => {
         const responseFavs = await addUserFavoritesAPI(userId, media);
+        setFavorites([...responseFavs.data.favorites]);
+    }
+
+    const removeFavorite = async (media) => {
+        const responseFavs = await removeUserFavoritesAPI(userId, media);
+        setFavorites([...responseFavs.data.favorites]);
+    }
+
+    const isFavorite = (media) => {
+        return !!favorites.find(fav => String(fav.id) === String(media.id));
+    }
+
+    const toggleFavorite = async (media) => {
+        if (isFavorite(media)) {
+            await removeFavorite(media);
+        } else {
+            await addFavorite(media);
+        }
+        // getFavorites();
     }
 
     return {
         user,
         favorites,
-        addFavorite
+        isFavorite,
+        toggleFavorite
     }
 }

@@ -21,3 +21,11 @@ export const addUserFavoritesAPI = async (id, item) => {
     }));
     return await r.json();
 }
+
+export const removeUserFavoritesAPI = async (id, item) => {
+    const r = await fetch(`${process.env.REACT_APP_API_BASE_URL}/users/${id}/favorites`, wrapUsingAuth({ 
+        method: 'DELETE',
+        body: JSON.stringify(item)
+    }));
+    return await r.json();
+}

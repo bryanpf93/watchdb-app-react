@@ -2,14 +2,16 @@ import { Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import Card from '../../components/card';
 import { getMovieUpcoming } from '../../core/media/media.services';
+import { useUser } from '../../core/users/users.hook';
 import { useFetchMedia } from '../../hooks/useFetchMedia';
 import './styles.css'
 
 function Movies() {
 
     const { t } = useTranslation('global');
+    const { favorites, toggleFavorite } = useUser();
 
-    const { data: mostPopularMovies } = useFetchMedia('movie/popular', getMovieUpcoming);
+    const { data: mostPopularMovies } = useFetchMedia('movie/popular', getMovieUpcoming, favorites);
     
 
     return (
@@ -19,7 +21,7 @@ function Movies() {
 
             <Row xs={2} md={2} lg={4} xl={5} className="g-4">
                 {mostPopularMovies && mostPopularMovies.map(movie =>
-                    <Col key={movie.id}><Card {...movie}></Card></Col>)}
+                    <Col key={movie.id}><Card {...movie} onFavorite={() =>toggleFavorite(movie)}></Card></Col>)}
             </Row>
 
             {/* <div className = 'container'>

@@ -19,8 +19,8 @@ function Card({ title, date, image, to, favorite, onFavorite }) {
                 style={{ backgroundImage: `url(${image?image:'https://previews.123rf.com/images/mathier/mathier1905/mathier190500002/134557216-sin-imagen-en-miniatura-marcador-de-posici%C3%B3n-para-foros-blogs-y-sitios-web.jpg'})` }}
             ></Link>
             <div className='card-body'>
-                <h3 className='card-title'>{title}</h3>
-                <h3 className='card-date'>{date}</h3>
+                <p className='card-title'>{title}</p>
+                <p className='card-date'>{date}</p>
             </div>
             <button className='favorite' onClick={handleFavoriteClick}>{favorite ? <AiOutlineClose></AiOutlineClose> : <MdOutlineFavorite></MdOutlineFavorite>}</button>
         </div>

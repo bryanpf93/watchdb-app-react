@@ -8,6 +8,8 @@ import CardCredits from '../../components/card-credits';
 import { Button, Col, Modal, Row } from 'react-bootstrap';
 import Slider from 'react-slick';
 import { useUser } from '../../core/users/users.hook';
+import {IoIosPerson} from 'react-icons/io'
+import {BsFillCameraVideoFill} from 'react-icons/bs'
 
 function MoviesDetails() {
 
@@ -36,10 +38,12 @@ function MoviesDetails() {
             )
     }, [id])
 
+    console.log(movie)
+
     var settings = {
         dots: true,
         infinite: true,
-        autoplay: true,
+        autoplay: false,
         speed: 2000,
         slidesToShow: 6,
         slidesToScroll: 1,
@@ -75,92 +79,52 @@ function MoviesDetails() {
     };
 
     return (
-        <div>
-            {/* {loading ? <div>Loading...</div> :
-                <div className="row p-5 mt-5 bg-danger">
-                    <img className='movie-image col-md-3' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} width={300} height={450} />
-                    <div className="movie-info col-md">
-                        <h1>{movie.title}</h1>
-                        <p>{movie.release_date}</p>
-                        <p>Duracion: {movie.runtime} minutos</p>
-                        <div className='genres'>{movie.genres.map(genre => <div key={genre.name} genre={genre} className='genre'>{genre.name}</div>)}</div>
+        <div className='movie-details'>
+            {loading ? <div>Loading...</div>
+                :
 
-                        <div className='buttons'>
-                            {isFavorite(movie) && <div className='circle' onClick={() => toggleFavorite(movie)}><MdFavorite></MdFavorite></div>}
-                            {!isFavorite(movie) && <div className='circle' onClick={() => toggleFavorite(movie)}><MdFavoriteBorder></MdFavoriteBorder></div>}
-                            <div className='trailer'>
-                                <span className='play'><BsFillPlayFill></BsFillPlayFill></span>
-                                <button className='play-trailer'>Reproducir trailer</button>
+                <div>
+                    <h3 className='mt-4 fw-bold'>{movie.title}</h3>
+                    <p className='mb-4'>{movie.release_date} - {movie.runtime} minutos</p>
+                    <div className='d-flex gap-2 mb-3 image-backdrop'>
+                        <div className='movie-image' style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movie.poster_path})` }}>
+                            <div className='buttons mb-4'>
+                                {isFavorite(movie) && <div className='circle' onClick={() => toggleFavorite(movie)}><MdFavorite></MdFavorite></div>}
+                                {!isFavorite(movie) && <div className='circle' onClick={() => toggleFavorite(movie)}><MdFavoriteBorder></MdFavoriteBorder></div>}
+                                <div className='circle'><BsFillPlayFill></BsFillPlayFill></div>
+                                
                             </div>
                         </div>
-                        <h3>Vista General</h3>
+                        <div className='movie-backdrop' style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${movie.backdrop_path})` }}  ></div>
+                    </div>
+                    {/* <img className='movie-image col-md-3' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} width={300} height={450} /> */}
+                    <div className="movie-info">
+                        <h3 className='fw-bold mt-4 mb-4'>Vista General</h3>
+                        <div className='genres mb-4'>{movie.genres.map(genre => <div key={genre.name} genre={genre} className='genre'>{genre.name}</div>)}</div>
                         <p>{movie.overview}</p>
 
                     </div>
 
-                </div>} */}
+                </div>}
 
-                <Row>
-                    <Col>
-                        <div className='path-image' style={{}}></div>
-                    </Col>
-                    <Col>
-                        <div className='back-image'></div>
-                    </Col>
 
-                </Row>
 
-            <h3 className='mt-5 mb-4'>Actores</h3>
-            {/* <div className='actors'>
-                {movie?.credits?.cast?.map(actor => <div key={actor.id} className='actor'>
-                    <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} alt={actor.name} width={100} height={150} />
-                    <p>{actor.name}</p>
-                </div>)}
-            </div>
-
-            <div className='actors'>
-                {movie?.credits?.cast?.map(actor => <CardCredits key={actor.id}></CardCredits>)}
-            </div> */}
-
-            {/* <Row xs={2} md={2} lg={4} xl={5} className="g-4">
-                {mostPopularMovies && mostPopularMovies.map(movie =>
-                    <Col key={movie.id}><Card {...movie}></Card></Col>)}
-            </Row> */}
-
-            {/* <Row xs={3} md={4} lg={6} xl={8} className="g-4">
-                {(movie?.credits?.cast?.slice(0,12))?.map(actor =>
-                    <Col key={actor.id}><CardCredits {...actor}></CardCredits></Col>)}
-            </Row> */}
+            <h5 className='mt-5 mb-5 fw-bold d-flex align-items-center'><IoIosPerson className='title-icon'></IoIosPerson>Actores</h5>
 
             <Slider {...settings}>
                 {(movie?.credits?.cast?.slice(0, 20))?.map(actor => <CardCredits key={actor.id} {...actor}></CardCredits>)}
 
             </Slider>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
+            
 
-
-
-            <h3 className='mt-5 mb-4'>Videos</h3>
-            <Row className='videos mb-5'>
+            <h5 className='mt-5 mb-4 fw-bold d-flex align-items-center'><BsFillCameraVideoFill className='title-icon'></BsFillCameraVideoFill>Videos</h5>
+            <Row className='videos mt-5 mb-5'>
                 {movie?.videos?.results?.map(video => <Col key={video.id}><div className='video'>
                     <iframe width="300" height="185" src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 </div></Col>)}
             </Row>
 
-
-        
-
-
-
-
-
-
-
-
-
+            
         </div>
     )
 

@@ -22,7 +22,7 @@ function Series() {
             {/* <div className="home-popular">
                     {popularTvShows && popularTvShows.map(m => <TvPopular key={m.id} popularTV={m}></TvPopular>)}
                 </div> */}
-            <Row xs={2} md={2} lg={4} xl={5} className="g-4">
+            <Row xs={2} md={3} lg={4} xl={5} className="g-4">
                 {popularTvShows && popularTvShows.map(movie =>
                     <Col key={movie.id}><Card {...movie}></Card></Col>)}
             </Row>

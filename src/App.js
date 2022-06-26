@@ -22,6 +22,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import UpComing from './pages/upcoming';
 import PersonDetail from './pages/person-detail';
+import SeriesDetails from './pages/series-details';
+import SearchAll from './pages/search-all';
 
 
 function App() {
@@ -38,7 +40,9 @@ function App() {
             <Route path='/movies' element={<Movies></Movies>}></Route>
             <Route path='/movies/:id' element={<MoviesDetails></MoviesDetails>}></Route>
             <Route path='/upcoming' element={<UpComing></UpComing>}></Route>
-            <Route path='/series' element={<Series></Series>}></Route>
+            <Route path='/tv' element={<Series></Series>}></Route>
+            <Route path='tv/:id' element={<SeriesDetails></SeriesDetails>}></Route>
+            <Route path='/search' element={<SearchAll></SearchAll>}></Route>
             <Route path='/person/:id' element={<PersonDetail></PersonDetail>}></Route>
             <Route path='/validate' element={<Validate />}></Route>
             <Route path='/user' element={<RequireAuth><User /></RequireAuth>}></Route>

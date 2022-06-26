@@ -11,3 +11,12 @@
 .app {
   background-color: var(--background-color);
 }
+
+.title-link:hover{
+  color: #dc3544;
+}
+
+.form-check-input:checked {
+  background-color: black !important;
+  border-color: black !important;
+}

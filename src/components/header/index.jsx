@@ -27,6 +27,7 @@ function Header() {
   return (
     <>
       <header className='header-container'>
+          <div className='container d-flex p-0'>
           <div className='nav'>
             <h1><Link className='logo' to='/'>WATCHDB</Link></h1>
           </div>
@@ -47,14 +48,13 @@ function Header() {
               </Form>
               {/* <nav className='mb-1 moon'><MdDarkMode></MdDarkMode></nav> */}
             </div>
-            <div>
+            <Link to={'/search'}>
               <InputGroup className="d-flex ">
-                <InputGroup.Text id="basic-addon1"><FcSearch></FcSearch></InputGroup.Text>
+                <InputGroup.Text  id="basic-addon1"><FcSearch></FcSearch></InputGroup.Text>
               </InputGroup>
-            </div>
-
+            </Link>
             {isAuth
-              ? <h5>Hola</h5>
+              ? <h5>H</h5>
               : (
                 <>
                   <nav className='register-login'>
@@ -64,6 +64,9 @@ function Header() {
                 </>
               )
             }
+            </div>
+
+            
           </div>
 
         

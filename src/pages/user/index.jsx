@@ -11,9 +11,9 @@
      return (
          <div>
              <h1>User</h1>
-             <p>{user._id}</p>
-             <p>{user.email}</p>
-             <p>{user.age}</p>
+             <p>{user[0]?._id}</p>
+             <p>{user[0]?.email}</p>
+             <p>{user[0]?.age}</p>
          </div>
      );
  }

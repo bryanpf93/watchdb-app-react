@@ -1,7 +1,18 @@
 .credits{
-    height: 210px;
     display: flex;
     flex-direction: column;
+    text-decoration: none;
+    font-size: 10px;
+    color: var(--color-text);
     
 }
+
+.credit-image{
+    height: 200px;
+    width: 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
 

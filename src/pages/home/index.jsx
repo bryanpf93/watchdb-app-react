@@ -32,7 +32,7 @@ function Home() {
   var settings = {
     dots: true,
     infinite: true,
-    autoplay: true,
+    autoplay: false,
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 1,
@@ -73,6 +73,8 @@ function Home() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  console.log(favorites);
+
   return (
     <>
       <main className='container-fluid'>
@@ -81,17 +83,16 @@ function Home() {
           <Modal.Body className="p-0">
             <iframe width="100%" height="450" src={'https://www.youtube.com/embed/JDYdGnpmsgo'} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           </Modal.Body>
-
         </Modal> 
 
-        <div className='mb-3 mt-5 d-flex align-items-center'>
-          <h2>{t('header.WELCOME')}, {t('header.WELCOME_MESSAGE')}</h2>
+        <div className='mb-3 mt-4 d-flex align-items-center '>
+          <h2 className='fw-bold title'>{t('header.WELCOME')}, {t('header.WELCOME_MESSAGE')}</h2>
         </div>
 
         <Carousel>
           {mostPopularMovies && (mostPopularMovies.slice(0, MAX_ITEMS_SLIDER))
             .map(({ id, title, backdrop }) =>
-              <Carousel.Item key={id} interval={2000}>
+              <Carousel.Item key={id} interval={5000}>
                 <img
                   className="d-block w-100"
                   src={backdrop}
@@ -109,8 +110,8 @@ function Home() {
         </Carousel>
 
 
-        {favorites
-        ? <><div className="title-home mt-5">
+        
+        <div className="title-home mt-5">
           <span className="title-icon">{<FcLike></FcLike>}</span>
           <span className="title">{t('header.FAVORITES')}</span>
         </div>    
@@ -118,7 +119,7 @@ function Home() {
           {favorites && (favorites.slice(0, MAX_ITEMS_SLIDER)).map(media =>
             <Card key={media.id} {...media} onFavorite={() => handleFavorite(media)}></Card>)}
         </Slider>
-        </>: ''}
+
 
 
 
@@ -134,7 +135,7 @@ function Home() {
 
         <div className="title-home mt-5">
           <span className="title-icon">{<MdUpcoming></MdUpcoming>}</span>
-          <span><Link className="title" to={'/upcoming'}>{t('header.UPCOMING_MOVIES')}</Link></span>
+          <span><Link className="title title-link" to={'/upcoming'}>{t('header.UPCOMING_MOVIES')}</Link></span>
         </div>
         <Slider {...settings} className='slider'>
           {upComingMovies && (upComingMovies.slice(0, MAX_ITEMS_SLIDER)).map(media =>
@@ -144,7 +145,7 @@ function Home() {
 
         <div className="title-home mt-5">
           <span className="title-icon">{<BiMoviePlay></BiMoviePlay>}</span>
-          <span><Link className="title" to={'/movies'}>{t('header.MOVIES_MOST_POPULAR')}</Link></span>
+          <span><Link className="title title-link" to={'/movies'}>{t('header.MOVIES_MOST_POPULAR')}</Link></span>
         </div>
         <Slider {...settings} className='slider'>
           {mostPopularMovies && (mostPopularMovies.slice(0, MAX_ITEMS_SLIDER)).map(media =>
@@ -155,7 +156,7 @@ function Home() {
 
         <div className="title-home mt-5">
           <span className="title-icon">{<BsDisplayFill></BsDisplayFill>}</span>
-          <span><Link className="title" to={'/series'}>{t('header.TVSHOWS_MOST_POPULAR')}</Link></span>
+          <span><Link className="title title-link" to={'/tv'}>{t('header.TVSHOWS_MOST_POPULAR')}</Link></span>
         </div>
         <Slider {...settings} className='slider mb-5'>
           {popularTvShows && (popularTvShows.slice(0, MAX_ITEMS_SLIDER)).map(media =>

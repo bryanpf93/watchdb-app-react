@@ -19,7 +19,7 @@ function Movies() {
         <>
             <h3 className='mt-5'>{t('header.MOVIES_MOST_POPULAR')}</h3>
 
-            <Row xs={2} md={2} lg={4} xl={5} className="g-4">
+            <Row xs={2} md={3} lg={4} xl={5} className="g-4">
                 {mostPopularMovies && mostPopularMovies.map(movie =>
                     <Col key={movie.id}><Card {...movie} onFavorite={() =>toggleFavorite(movie)}></Card></Col>)}
             </Row>

@@ -13,16 +13,16 @@ function Card({ title, date, image, to, favorite, onFavorite }) {
     };
 
     return (
-        <div className="card">
-            <Link to={to}
+        <div className="card d-flex border-0">
+            {to && <Link to={to}
                 className='card-image'
                 style={{ backgroundImage: `url(${image?image:'https://previews.123rf.com/images/mathier/mathier1905/mathier190500002/134557216-sin-imagen-en-miniatura-marcador-de-posici%C3%B3n-para-foros-blogs-y-sitios-web.jpg'})` }}
-            ></Link>
+            ></Link>}
             <div className='card-body'>
-                <p className='card-title'>{title}</p>
-                <p className='card-date'>{date}</p>
+                <span className='card-title'>{title}</span>
+                <span className='card-date'>{date}</span>
             </div>
-            <button className='favorite' onClick={handleFavoriteClick}>{favorite ? <AiOutlineClose></AiOutlineClose> : <MdOutlineFavorite></MdOutlineFavorite>}</button>
+            {/* <button className='favorite' onClick={handleFavoriteClick}>{favorite ? <AiOutlineClose></AiOutlineClose> : <MdOutlineFavorite></MdOutlineFavorite>}</button> */}
         </div>
     )
 }

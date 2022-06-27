@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 import Card from '../../components/card';
 import { Col, Row } from 'react-bootstrap';
+import { mapperMedia } from '../../core/media/media.utils';
 
 function SearchAll() {
     const [loading, setLoading] = useState(false);
@@ -16,7 +17,7 @@ function SearchAll() {
         setError(false);
 
         if (search) {
-            fetch(`https://api.themoviedb.org/3/search/tv?api_key=${process.env.REACT_APP_API_KEY_MOVIE_DB}&language=es-ES&query=${search}`)
+            fetch(`https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_API_KEY_MOVIE_DB}&language=es-ES&query=${search}`)
                 .then(res => res.json())
                 .then(data => {
                     setMovies(data.results);
@@ -56,7 +57,7 @@ function SearchAll() {
                             :
                             <div>
                                 <div className='d-flex flex-wrap gap-3'>
-                                    {movies?.map(movie => (
+                                    {/* {movies?.map(movie => (
                                         <Link to={`/tv/${movie.id}`} key={movie.id} className='title fs'>
                                             <div className='search-media'>
                                                 <div className='search-image' style={{
@@ -72,12 +73,12 @@ function SearchAll() {
                                                 </div>
                                             </div>
                                         </Link>
-                                    ))}
+                                    ))} */}
                                 </div>
-                                {/* <Row xs={2} md={3} lg={4} xl={5} className="g-4">
-                                    {movies && movies.map(movie =>
-                                        <Col key={movie.id}><Card {...movie}></Card></Col>)}
-                                </Row> */}
+                                <Row xs={2} md={3} lg={4} xl={5} className="g-4">
+                                    {movies && movies?.map(tv =>
+                                        <Col key={tv.id}><Card  {...mapperMedia(tv)}></Card></Col>)}
+                                </Row>
                             </div>
                         }
                     </div>

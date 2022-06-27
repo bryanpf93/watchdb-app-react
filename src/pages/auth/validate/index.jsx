@@ -1,6 +1,7 @@
 import { useAuth } from "../../../core/auth/auth.hook";
 import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { useEffect } from "react";
+import './styles.css';
 
 function Validate() {
     const { isLoading, isAuth, validate } = useAuth();
@@ -14,10 +15,11 @@ function Validate() {
         <>
             {
                 isLoading
-                    ? <h1>Validando su email...</h1>
+                    ? <h3 className="text-formulary">Validando su email...</h3>
                     : (
                         <>
-                            <h1>Su email se ha validado con éxito. Ya puedes hacer login</h1>
+                            <h3 className="text-formulary text-primary fs-3">Su email se ha validado con éxito. Ya puedes hacer login</h3>
+                            <div className="validate-image"></div>
                             <Link to={'/auth/login'}>Ir a Login</Link>
                         </>
                     )

@@ -1,11 +1,15 @@
 .light {
   --background-color: #E2DEDE;
   --color-text: #000;
+  --backgroud-color-header: #dc3544;
+  --color-text-header: black ;
 }
 
 .dark {
   --background-color: #292828;
   --color-text: #FFF;
+  --backgroud-color-header: black ;
+  --color-text-header: #dc3544 ;
 }
 
 .app {
@@ -18,5 +22,5 @@
 
 .form-check-input:checked {
   background-color: black !important;
-  border-color: black !important;
+  border-color: #dc3544 !important;
 }

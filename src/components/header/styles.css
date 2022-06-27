@@ -2,10 +2,10 @@
     top: 0;
     position: sticky;
     z-index: 5;
-    color: black;
+    color: var(--color-text-header);
     display: flex;
     flex-direction: row;
-    background-color: #dc3544;
+    background-color: var(--backgroud-color-header);
     padding: 10px 0;
     justify-content: space-between;
     align-items: center;
@@ -29,15 +29,20 @@
     font-weight: bold;
 }
 
+.button:focus{
+    transform: scale(1.2);
+    border: 3px solid black;
+}
+
 .logo{
     text-decoration: none;
-    color:black;
+    color: currentColor;
     font-weight: bold;
 }
 
 .header-text{
     text-decoration: none;
-    color:black;
+    color: currentColor;
     padding: 20px;
     font-size: 1rem;
 }
@@ -47,14 +52,6 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-}
-
-.sun{
-    color: #FFD400;
-}
-
-.moon{
-    color: black;
 }
 
 .toggle{

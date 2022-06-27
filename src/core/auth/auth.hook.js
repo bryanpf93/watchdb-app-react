@@ -45,12 +45,20 @@ export const useAuth = () => {
         setIsLoading(false); // cuando termino de llamar al API dejo de cargar
     }
 
+    const logout = () => {
+        setIsAuth(false);
+        setUserId('');
+        sessionStorage.removeItem(AUTH_STORAGE_KEY);
+        sessionStorage.removeItem(USER_ID_STORAGE_KEY);
+    }
+
     return {
         isAuth,
         userId,
         isLoading,
         register,
         login,
+        logout,
         validate
     }
 

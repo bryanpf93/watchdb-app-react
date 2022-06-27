@@ -4,12 +4,14 @@ import './styles.css'
 import { FaListUl } from 'react-icons/fa';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { BsFillPlayFill } from 'react-icons/bs'
-import CardCredits from '../../components/card-credits';
+import CardCredits from '../../components/card-cast';
 import { Button, Col, Modal, Row } from 'react-bootstrap';
 import Slider from 'react-slick';
 import { useUser } from '../../core/users/users.hook';
 import {IoIosPerson} from 'react-icons/io'
 import {BsFillCameraVideoFill} from 'react-icons/bs'
+import { mapperMedia } from '../../core/media/media.utils';
+import CardCast from '../../components/card-cast';
 
 function MoviesDetails() {
 
@@ -44,9 +46,9 @@ function MoviesDetails() {
         dots: true,
         infinite: true,
         autoplay: false,
-        speed: 2000,
+        speed: 500,
         slidesToShow: 6,
-        slidesToScroll: 1,
+        slidesToScroll: 5,
         initialSlide: 0,
         autoplaySpeed: 5000,
         cssEase: "linear",
@@ -89,8 +91,8 @@ function MoviesDetails() {
                     <div className='d-flex gap-2 mb-3 image-backdrop'>
                         <div className='movie-image' style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movie.poster_path})` }}>
                             <div className='buttons mb-4'>
-                                {isFavorite(movie) && <div className='circle' onClick={() => toggleFavorite(movie)}><MdFavorite></MdFavorite></div>}
-                                {!isFavorite(movie) && <div className='circle' onClick={() => toggleFavorite(movie)}><MdFavoriteBorder></MdFavoriteBorder></div>}
+                                {isFavorite(movie) && <div className='circle' onClick={() => toggleFavorite(mapperMedia(movie, 'movie'))}><MdFavorite></MdFavorite></div>}
+                                {!isFavorite(movie) && <div className='circle' onClick={() => toggleFavorite(mapperMedia(movie, 'movie'))}><MdFavoriteBorder></MdFavoriteBorder></div>}
                                 <div className='circle'><BsFillPlayFill></BsFillPlayFill></div>
                                 
                             </div>
@@ -112,18 +114,21 @@ function MoviesDetails() {
             <h5 className='mt-5 mb-5 fw-bold d-flex align-items-center'><IoIosPerson className='title-icon'></IoIosPerson>Actores</h5>
 
             <Slider {...settings}>
-                {(movie?.credits?.cast?.slice(0, 20))?.map(actor => <CardCredits key={actor.id} {...actor}></CardCredits>)}
+                {(movie?.credits?.cast?.slice(0, 15))?.map(actor => <CardCast key={actor.id} {...actor}></CardCast>)}
 
             </Slider>
             
-
+            
+           { movie?.videos?.results.length > 0 ?
+            <>
             <h5 className='mt-5 mb-4 fw-bold d-flex align-items-center'><BsFillCameraVideoFill className='title-icon'></BsFillCameraVideoFill>Videos</h5>
             <Row className='videos mt-5 mb-5'>
                 {movie?.videos?.results?.map(video => <Col key={video.id}><div className='video'>
                     <iframe width="300" height="185" src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 </div></Col>)}
             </Row>
-
+            </>
+            :""}
             
         </div>
     )

@@ -55,10 +55,6 @@
     margin-bottom: 20px;
 }
 
-.carousel-item{
-    height: 450px;
-}
-
 .slider{
     background-color: (--background-color);
 }

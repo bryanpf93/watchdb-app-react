@@ -1,12 +1,11 @@
 import { useAuth } from "../../../core/auth/auth.hook";
-import { useNavigate } from "react-router-dom";
+import './styles.css';
 
 
-function Login(){
+function Login() {
     // missing is Loading
     const { isAuth, login } = useAuth();
-    const navigate = useNavigate();
-    if (isAuth) navigate("/"); // si entro al registro logado, no me lo debe permitir
+    if (isAuth) window.location.href = "/"; // si entro al registro logado, no me lo debe permitir
     const handleLogin = (e) => {
         e.preventDefault();
         const user = {
@@ -14,16 +13,19 @@ function Login(){
             password: e.target.pass.value
         };
         login(user)
-        .then(() => navigate("/user")); // despues de logarme tengo que navegar
+            .then(() => window.location = "/"); // despues de logarme tengo que navegar
     }
     return (
-        <div className="login">
-        <form onSubmit={handleLogin}>
-            <input name="email" type="email" placeholder="Email"></input>
-            <input name="pass" type="password" placeholder="Pass"></input>
-            <button type="submit">Log In</button>
-        </form>
-        </div>
+        <>
+            <form onSubmit={handleLogin} className='container text-center formulary'>
+                <h5 className="text-formulary">EMAIL</h5>
+                <input name="email" type="email" placeholder="Email"></input>
+                <h5 className="text-formulary">CONTRASEÑA</h5>
+                <input name="pass" type="password" placeholder="Pass"></input>
+                <br></br>
+                <button className="mt-4 mb-4 fs-5" type="submit">Log In</button>
+            </form>
+        </>
     )
 }
 

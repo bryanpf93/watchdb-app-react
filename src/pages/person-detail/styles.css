@@ -1,0 +1,38 @@
+.person-details{
+    color: var(--color-text);
+}
+
+.person-image{
+    width: 350px;
+    height: 400px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+}
+
+.person-biography{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.person-credits-image{
+    width: 200px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.credits-title{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    font-size: 1rem;
+
+}

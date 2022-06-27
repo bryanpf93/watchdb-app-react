@@ -9,6 +9,13 @@ export const getUserInfoAPI = async (id) => {
     return await r.json();
 }
 
+export const removeUserInfoAPI = async (id) => {
+    const r = await fetch(`${process.env.REACT_APP_API_BASE_URL}/users/${id}`, wrapUsingAuth({
+        method: "DELETE"
+    }));
+    return await r.json();
+}
+
 export const getUserFavoritesAPI = async (id) => {
     const r = await fetch(`${process.env.REACT_APP_API_BASE_URL}/users/${id}/favorites`, wrapUsingAuth());
     return await r.json();

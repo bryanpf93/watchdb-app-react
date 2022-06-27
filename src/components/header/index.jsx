@@ -9,6 +9,7 @@ import { useAuth } from '../../core/auth/auth.hook';
 import { BsFillSunFill, BsSun } from 'react-icons/bs';
 import { BiMoon } from 'react-icons/bi';
 import { MdDarkMode } from 'react-icons/md';
+import { useUser } from '../../core/users/users.hook';
 
 
 
@@ -16,6 +17,8 @@ function Header() {
   const { isAuth } = useAuth();
   const [theme, setTheme] = useContext(ThemeContext);
   const { t, i18n } = useTranslation('global');
+  const { user } = useUser();
+
 
 
   const handleChange = (e) => {
@@ -54,7 +57,8 @@ function Header() {
               </InputGroup>
             </Link>
             {isAuth
-              ? <h5>H</h5>
+              ? <Link to={'/user'}><h5>{ user?.name?.charAt(0).toUpperCase()}</h5>
+                </Link>
               : (
                 <>
                   <nav className='register-login'>

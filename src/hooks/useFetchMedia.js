@@ -20,7 +20,7 @@ export function useFetchMedia(path, fetcher, favorites) {
         }
     }, [path, favorites])
 
-    const fetching = useCallback(() => {
+    const fetching = () => {
         let url = new URL(`${BASE_URL}/${path}`);
         url.searchParams.append('api_key', API_KEY);
         url.searchParams.append('language', 'es');
@@ -39,7 +39,7 @@ export function useFetchMedia(path, fetcher, favorites) {
                 setLoading(false);
                 setError(error);
             });
-    }, [favorites])
+    };
 
     return { data, loading, error };
 }

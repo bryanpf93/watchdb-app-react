@@ -6,7 +6,8 @@ import { HiTrendingUp } from 'react-icons/hi';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { useParams } from 'react-router-dom';
 import Slider from 'react-slick';
-import CardCredits from '../../components/card-credits';
+import CardCast from '../../components/card-cast';
+import { mapperMedia } from '../../core/media/media.utils';
 import { useUser } from '../../core/users/users.hook';
 import './styles.css';
 
@@ -43,9 +44,9 @@ function SeriesDetails() {
         dots: true,
         infinite: true,
         autoplay: false,
-        speed: 2000,
+        speed: 500,
         slidesToShow: 6,
-        slidesToScroll: 1,
+        slidesToScroll: 5,
         initialSlide: 0,
         autoplaySpeed: 5000,
         cssEase: "linear",
@@ -88,8 +89,8 @@ function SeriesDetails() {
                     <div className='d-flex gap-2 mb-3 image-backdrop'>
                         <div className='movie-image' style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500/${serie.poster_path})` }}>
                             <div className='buttons mb-4'>
-                                {isFavorite(serie) && <div className='circle' onClick={() => toggleFavorite(serie)}><MdFavorite></MdFavorite></div>}
-                                {!isFavorite(serie) && <div className='circle' onClick={() => toggleFavorite(serie)}><MdFavoriteBorder></MdFavoriteBorder></div>}
+                                {isFavorite(serie) && <div className='circle' onClick={() => toggleFavorite(mapperMedia(serie, 'tv'))}><MdFavorite></MdFavorite></div>}
+                                {!isFavorite(serie) && <div className='circle' onClick={() => toggleFavorite(mapperMedia(serie, 'tv'))}><MdFavoriteBorder></MdFavoriteBorder></div>}
                                 <div className='circle'><BsFillPlayFill></BsFillPlayFill></div>
 
                             </div>
@@ -107,16 +108,21 @@ function SeriesDetails() {
             <h5 className='mt-5 mb-4 fw-bold'>Actores</h5>
 
             <Slider {...settings}>
-                {(serie?.credits?.cast?.slice(0, 10))?.map(actor => <CardCredits key={actor.id} {...actor}></CardCredits>)}
+                {(serie?.credits?.cast?.slice(0, 15))?.map(actor => <CardCast key={actor.id} {...actor}></CardCast>)}
             </Slider>
 
 
+           { serie?.videos?.results.length > 0
+           ?
+            <>
             <h5 className='mt-5 mb-4 fw-bold'>Videos</h5>
             <Row className='videos mb-5'>
                 {serie?.videos?.results?.map(video => <Col key={video.id}><div className='video'>
                     <iframe width="300" height="185" src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 </div></Col>)}
             </Row>
+            </>
+            : ""}
 
 
 

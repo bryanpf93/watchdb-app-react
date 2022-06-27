@@ -1,0 +1,18 @@
+.formulary{
+    width: 100%;
+    background-color: #dc3544;
+    max-width: 350px;
+    margin: 70px auto;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,.1);
+}
+
+.text-formulary{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: var(--color-text)   ;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+}

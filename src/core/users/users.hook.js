@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useAuth } from "../auth/auth.hook";
-import { addUserFavoritesAPI, getUserFavoritesAPI, getUserInfoAPI, removeUserFavoritesAPI } from "./users.api"
+import { addUserFavoritesAPI, getUserFavoritesAPI, getUserInfoAPI, removeUserFavoritesAPI, removeUserInfoAPI } from "./users.api"
 
 
 export const useUser = () => {
@@ -20,7 +20,12 @@ export const useUser = () => {
 
     const getUser = async () => {
         const responseUser = await getUserInfoAPI(userId);
-        updateUser(responseUser);
+        updateUser(responseUser.data);
+    }
+
+    const removeUser = async () => {
+        const responseUser = await removeUserInfoAPI(userId);
+        updateUser(responseUser.data);
     }
 
     const getFavorites = async () => {
@@ -53,6 +58,7 @@ export const useUser = () => {
 
     return {
         user,
+        removeUser,
         favorites,
         isFavorite,
         toggleFavorite

@@ -14,7 +14,7 @@ import Slider from "react-slick";
 import { useState } from "react";
 import { FcLike } from "react-icons/fc";
 
-const MAX_ITEMS_SLIDER = 10;
+const MAX_ITEMS_SLIDER = 15;
 
 function Home() {
   const { t } = useTranslation('global');
@@ -35,7 +35,7 @@ function Home() {
     autoplay: false,
     speed: 500,
     slidesToShow: 5,
-    slidesToScroll: 1,
+    slidesToScroll: 5,
     initialSlide: 0,
     autoplaySpeed: 5000,
     cssEase: "linear",
@@ -92,7 +92,7 @@ function Home() {
         <Carousel>
           {mostPopularMovies && (mostPopularMovies.slice(0, MAX_ITEMS_SLIDER))
             .map(({ id, title, backdrop }) =>
-              <Carousel.Item key={id} interval={5000}>
+              <Carousel.Item key={id} interval={555000}>
                 <img
                   className="d-block w-100"
                   src={backdrop}
@@ -111,7 +111,7 @@ function Home() {
 
 
         
-        <div className="title-home mt-5">
+        { favorites.length>=5 ?<><div className="title-home mt-5">
           <span className="title-icon">{<FcLike></FcLike>}</span>
           <span className="title">{t('header.FAVORITES')}</span>
         </div>    
@@ -119,6 +119,7 @@ function Home() {
           {favorites && (favorites.slice(0, MAX_ITEMS_SLIDER)).map(media =>
             <Card key={media.id} {...media} onFavorite={() => handleFavorite(media)}></Card>)}
         </Slider>
+        </> : ''}
 
 
 

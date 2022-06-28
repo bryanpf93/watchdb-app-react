@@ -50,6 +50,7 @@ export const useAuth = () => {
         setUserId('');
         sessionStorage.removeItem(AUTH_STORAGE_KEY);
         sessionStorage.removeItem(USER_ID_STORAGE_KEY);
+        window.location.href = '/';
     }
 
     return {

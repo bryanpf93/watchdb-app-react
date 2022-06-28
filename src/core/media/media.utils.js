@@ -22,3 +22,17 @@ export const mapperMedia = (data, type, favorites = []) => {
         favorite: !!favorites.find(f => f.id === id)
     };
 }
+
+export const mapperTrailer = (videos) => {
+    let key = '';
+    if (Array.isArray(videos) && videos.length > 0) {
+        const trailers = videos.filter(video => video.type === "Trailer");
+        if (trailers.length === 0) {
+            key = videos[0].key;
+        } else {
+            const trailerES = trailers.find(video => video.iso_639_1 === "es");
+            key = trailerES ? trailerES.key : trailers[0].key;
+        }
+    }
+    return key ? `https://www.youtube.com/embed/${key}?autoplay=1` : '';
+}

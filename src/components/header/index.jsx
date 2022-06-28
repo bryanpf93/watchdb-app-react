@@ -10,14 +10,16 @@ import { BsFillSunFill, BsSun } from 'react-icons/bs';
 import { BiMoon } from 'react-icons/bi';
 import { MdDarkMode } from 'react-icons/md';
 import { useUser } from '../../core/users/users.hook';
+import { FaUserCircle } from 'react-icons/fa';
 
 
 
 function Header() {
-  const { isAuth } = useAuth();
+  const { isAuth, logout } = useAuth();
   const [theme, setTheme] = useContext(ThemeContext);
   const { t, i18n } = useTranslation('global');
   const { user } = useUser();
+
 
 
 
@@ -30,10 +32,12 @@ function Header() {
   return (
     <>
       <header className='header-container'>
-          <div className='container d-flex p-0'>
-          <div className='nav'>
+        <div className='container nav-total'>
+
+          <div className='nav d-flex align-items-center'>
             <h1><Link className='logo' to='/'>WATCHDB</Link></h1>
           </div>
+          
           <div className='nav-toggle'>
             <div>
               <button className='button' onClick={() => i18n.changeLanguage('es')} >ES</button>
@@ -53,14 +57,31 @@ function Header() {
             </div>
             <Link to={'/search'}>
               <InputGroup className="d-flex ">
-                <InputGroup.Text  id="basic-addon1"><FcSearch></FcSearch></InputGroup.Text>
+                <InputGroup.Text id="basic-addon1"><FcSearch></FcSearch></InputGroup.Text>
               </InputGroup>
             </Link>
             {isAuth
-              ? <Link to={'/user'}><h5>{ user?.name?.charAt(0).toUpperCase()}</h5>
+              ? <>
+                {/* <Link className='header-text' to={'/user'}>
+                <di className='first-letter'>
+                <h4>{ user?.name?.charAt(0).toUpperCase()}</h4>
+                </di>
+                </Link> */}
+                <Link className='header-text' to={'/user'}>
+                  <div className='first-letter d-flex align-items-center'>
+                    <h4 className='fs-1'><FaUserCircle></FaUserCircle></h4>
+                  </div>
                 </Link>
+
+                {/* <h4 className='header-text' onClick={logout} >LOGOUT</h4> */}
+              </>
               : (
                 <>
+                  <Link className='header-text' to={'/user'}>
+                    <div className='first-letter d-flex align-items-center'>
+                      <h4 className='fs-2'><FaUserCircle></FaUserCircle></h4>
+                    </div>
+                  </Link>
                   <nav className='register-login'>
                     <h4><Link className='header-text' to="/auth/register">{t('header.REGISTER')}</Link></h4>
                     <h4><Link className='header-text' to="/auth/login">{t('header.LOGIN')}</Link></h4>
@@ -68,12 +89,12 @@ function Header() {
                 </>
               )
             }
-            </div>
-
-            
           </div>
 
-        
+
+        </div>
+
+
       </header>
       {/* <header className='header-container'>
       <Navbar bg="danger" expand="lg">

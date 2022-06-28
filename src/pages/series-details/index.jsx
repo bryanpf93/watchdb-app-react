@@ -1,13 +1,13 @@
 import { t } from 'i18next';
 import { useEffect, useState } from 'react';
-import { Button, Col, Row } from 'react-bootstrap';
+import { Button, Col, Modal, Row } from 'react-bootstrap';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { HiTrendingUp } from 'react-icons/hi';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { useParams } from 'react-router-dom';
 import Slider from 'react-slick';
 import CardCast from '../../components/card-cast';
-import { mapperMedia } from '../../core/media/media.utils';
+import { mapperMedia, mapperTrailer } from '../../core/media/media.utils';
 import { useUser } from '../../core/users/users.hook';
 import './styles.css';
 
@@ -17,6 +17,7 @@ function SeriesDetails() {
     const [serie, setSerie] = useState({})
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
+    const [trailer, setTrailer] = useState('')
 
     const { isFavorite, toggleFavorite } = useUser();
 
@@ -24,7 +25,7 @@ function SeriesDetails() {
 
     useEffect(() => {
         setLoading(true);
-        fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=es-ES&append_to_response=credits,videos`)
+        fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${API_KEY}&language=es-ES&append_to_response=credits,videos&include_video_language=es,null`)
             .then(res => res.json())
             .then(data => {
                 setSerie(data)
@@ -78,9 +79,25 @@ function SeriesDetails() {
         ]
     };
 
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+
+    const handleShow = () => {
+        setTrailer(mapperTrailer(serie.videos.results))
+        setShow(true)
+    }
+
     return (
 
         <div>
+
+            <Modal show={show} onHide={handleClose} centered>
+                <Modal.Body className="p-0">
+                    <iframe width="100%" height="100%" src={trailer} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                </Modal.Body>
+            </Modal>
+
             {loading ? <div>Loading...</div>
                 :
                 <div className='movie-details'>
@@ -91,7 +108,7 @@ function SeriesDetails() {
                             <div className='buttons mb-4'>
                                 {isFavorite(serie) && <div className='circle' onClick={() => toggleFavorite(mapperMedia(serie, 'tv'))}><MdFavorite></MdFavorite></div>}
                                 {!isFavorite(serie) && <div className='circle' onClick={() => toggleFavorite(mapperMedia(serie, 'tv'))}><MdFavoriteBorder></MdFavoriteBorder></div>}
-                                <div className='circle'><BsFillPlayFill></BsFillPlayFill></div>
+                                <div className='circle' onClick={handleShow}><BsFillPlayFill></BsFillPlayFill></div>
 
                             </div>
                         </div>
@@ -112,17 +129,17 @@ function SeriesDetails() {
             </Slider>
 
 
-           { serie?.videos?.results.length > 0
-           ?
-            <>
-            <h5 className='mt-5 mb-4 fw-bold'>Videos</h5>
-            <Row className='videos mb-5'>
-                {serie?.videos?.results?.map(video => <Col key={video.id}><div className='video'>
-                    <iframe width="300" height="185" src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                </div></Col>)}
-            </Row>
-            </>
-            : ""}
+            {serie?.videos?.results.length > 0
+                ?
+                <>
+                    <h5 className='mt-5 mb-4 fw-bold'>Videos</h5>
+                    <Row className='videos mb-5'>
+                        {serie?.videos?.results?.map(video => <Col key={video.id}><div className='video'>
+                            <iframe width="300" height="185" src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                        </div></Col>)}
+                    </Row>
+                </>
+                : ""}
 
 
 

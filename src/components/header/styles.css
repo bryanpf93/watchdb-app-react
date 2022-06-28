@@ -6,13 +6,20 @@
     display: flex;
     flex-direction: row;
     background-color: var(--backgroud-color-header);
-    padding: 10px 0;
     justify-content: space-between;
     align-items: center;
 }
 
 .nav{
-    width: 35%;
+    /* width: 35%; */
+}
+
+.nav-total{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center;
+  
 }
 
 
@@ -20,8 +27,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 65%;
-    gap: 20px;
+    /* width: 65%; */
+    gap: 100px;
     justify-content: flex-end;
 }
 
@@ -43,8 +50,9 @@
 .header-text{
     text-decoration: none;
     color: currentColor;
-    padding: 20px;
+    padding: 20px 0;
     font-size: 1rem;
+    cursor: pointer;
 }
 
 .theme{
@@ -59,8 +67,43 @@
     
 }
 
+.first-letter{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #B3B3B3;
+    display: flex;
+    justify-content: center;
+
+}
+
 .register-login{
     display: flex;
     font-weight: bold;
     flex-wrap: wrap;
+}
+
+
+@media (max-width: 481px){
+    .nav-toggle{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        /* width: 65%; */
+        gap: 10px;
+        justify-content: flex-end;
+    }
+}
+
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .nav-toggle{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        /* width: 65%; */
+        gap: 40px;
+        justify-content: flex-end;
+    }
+    
 }

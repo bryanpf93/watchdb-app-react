@@ -16,7 +16,6 @@ function User() {
     const handleDelete = async () => {
         await removeUser();
         logout();
-        window.location.href = '/auth/login';
     }
 
     return (

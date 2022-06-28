@@ -21,15 +21,49 @@
     display: flex;
     font-size: 1.5rem;
     font-weight: bold;
-    margin: 50px 0 30px 0;
+    margin: 56px 0 30px 0;
+    align-items: center;
 
 }
 
 .title-icon{
+    display: flex;
     margin-right: 10px;
-    color: #5A3AE9;
+    color: #dc3544;
+    align-items: center;
 }
 
 .title{
     text-decoration: none;
+    color: var(--color-text);
+}
+
+.description-movie{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    text-align: start;
+    margin-bottom: 20px;
+}
+
+.carousel{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    max-height: 450px;
+}
+
+.carousel-item{
+    max-height: 450px;
+}
+
+.slider{
+    background-color: (--background-color);
+}
+
+.modal-content {
+    height: 450px;
 }

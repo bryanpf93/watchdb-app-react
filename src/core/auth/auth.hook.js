@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { registerAPI, loginAPI, validateTokenAPI } from "./auth.api.js"
-import { AUTH_STORAGE_KEY } from "./auth.utils.js";
+import { AUTH_STORAGE_KEY, USER_ID_STORAGE_KEY } from "./auth.utils.js";
 
 // Se encarga de toda la gestion de la aunteticacion, 
 // es el que decide si estamos logados o no
@@ -18,6 +18,10 @@ export const useAuth = () => {
 
     const [isAuth, setIsAuth] = useState(sessionStorage.getItem(AUTH_STORAGE_KEY) !== null);
     const [isLoading, setIsLoading] = useState(null);
+    const [userId, setUserId] = useState(() => {
+        const stored = sessionStorage.getItem(USER_ID_STORAGE_KEY);
+        return stored ? stored : ''
+    });
     
     const register = async (user) => {
         setIsLoading(true); // me pongo en modo carga
@@ -27,9 +31,11 @@ export const useAuth = () => {
 
     const login = async (user) => {
         setIsLoading(true); //  me pongo en modo carga
-        const token = await loginAPI(user)
+        const { access_token, user_id } = await loginAPI(user)
         setIsAuth(true);
-        sessionStorage.setItem(AUTH_STORAGE_KEY, token.access_token);
+        sessionStorage.setItem(AUTH_STORAGE_KEY, access_token);
+        sessionStorage.setItem(USER_ID_STORAGE_KEY, user_id);
+        setUserId(user_id);
         setIsLoading(false); // cuando termino de llamar al API dejo de cargar
     }
 
@@ -39,11 +45,21 @@ export const useAuth = () => {
         setIsLoading(false); // cuando termino de llamar al API dejo de cargar
     }
 
+    const logout = () => {
+        setIsAuth(false);
+        setUserId('');
+        sessionStorage.removeItem(AUTH_STORAGE_KEY);
+        sessionStorage.removeItem(USER_ID_STORAGE_KEY);
+        window.location.href = '/';
+    }
+
     return {
         isAuth,
+        userId,
         isLoading,
         register,
         login,
+        logout,
         validate
     }
 

@@ -1,11 +1,39 @@
 .light {
   --background-color: #E2DEDE;
+  --color-text: #000;
+  --backgroud-color-header: #dc3544;
+  --color-text-header: black ;
+  --border-color: #dc3544; 
+
 }
 
 .dark {
   --background-color: #292828;
+  --color-text: #FFF;
+  --backgroud-color-header: black ;
+  --color-text-header: #dc3544 ;
+  --border-color : black;
 }
 
 .app {
   background-color: var(--background-color);
+}
+
+.title-link:hover{
+  color: #dc3544;
+}
+
+.form-check-input:checked {
+  background-color: black !important;
+  border-color: #dc3544 !important;
+}
+
+.dropdown-item{
+  background-color: var(--backgroud-color-header) !important;
+  color: var(--color-text-header) !important;
+}
+
+.dropdown-menu{
+  background-color: var(--backgroud-color-header) !important;
+  color: var(--color-text-header) !important;
 }

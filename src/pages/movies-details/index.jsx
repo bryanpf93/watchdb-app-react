@@ -2,8 +2,17 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './styles.css'
 import { FaListUl } from 'react-icons/fa';
-import { MdFavorite } from 'react-icons/md';
+import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { BsFillPlayFill } from 'react-icons/bs'
+import CardCredits from '../../components/card-cast';
+import { Button, Col, Modal, Row } from 'react-bootstrap';
+import Slider from 'react-slick';
+import { useUser } from '../../core/users/users.hook';
+import {IoIosPerson} from 'react-icons/io'
+import {BsFillCameraVideoFill} from 'react-icons/bs'
+import { mapperMedia, mapperTrailer } from '../../core/media/media.utils';
+import CardCast from '../../components/card-cast';
+import {RiGlobalLine } from 'react-icons/ri'
 
 function MoviesDetails() {
 
@@ -11,6 +20,9 @@ function MoviesDetails() {
     const [movie, setMovie] = useState({})
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
+    const [trailer, setTrailer] = useState('')
+
+    const { isFavorite, toggleFavorite } = useUser();
 
     const API_KEY = process.env.REACT_APP_API_KEY_MOVIE_DB
 
@@ -32,52 +44,110 @@ function MoviesDetails() {
 
     console.log(movie)
 
-    return (
-        <div className='page-movie'>
-            {loading ? <div>Loading...</div> :
-                <div className="movie-details">
-                    <img className='movie-image' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} width={300} height={450} />
-                    <div className="movie-info">
-                        <h1>{movie.title}</h1>
-                        <p>{movie.release_date}</p>
-                        <p>Duracion: {movie.runtime} minutos</p>
-                        <div className='genres'>{movie.genres.map(genre => <div key={genre.name} genre={genre} className='genre'>{genre.name}</div>)}</div>
+    var settings = {
+        dots: true,
+        infinite: true,
+        autoplay: false,
+        speed: 500,
+        slidesToShow: 6,
+        slidesToScroll: 5,
+        initialSlide: 0,
+        autoplaySpeed: 5000,
+        cssEase: "linear",
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 2,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    };
 
-                        <div className='buttons'>
-                            <div className='circle'><FaListUl></FaListUl></div>
-                            <div className='circle'><MdFavorite></MdFavorite></div>
-                            <div className='trailer'>
-                                <span className='play'><BsFillPlayFill></BsFillPlayFill></span>
-                                <button className='play-trailer'>Reproducir trailer</button>
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    
+    const handleShow = () => {
+        setTrailer(mapperTrailer(movie.videos.results))
+        setShow(true)
+    }
+
+    return (
+        <div className='movie-details'>
+            
+            <Modal show={show} onHide={handleClose} centered>
+                <Modal.Body className="p-0">
+                    <iframe width="100%" height="100%" src={trailer} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                </Modal.Body>
+            </Modal>
+
+            {loading ? <div>Loading...</div>
+                :
+
+                <div>
+                    <h3 className='mt-4 fw-bold'>{movie.title}</h3>
+                    <p className='mb-4'>{movie.release_date} - {movie.runtime} minutos</p>
+                    <div className='d-flex gap-2 mb-3 image-backdrop'>
+                        <div className='movie-image' style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500/${movie.poster_path})` }}>
+                            <div className='buttons mb-4'>
+                                {isFavorite(movie) && <div className='circle' onClick={() => toggleFavorite(mapperMedia(movie, 'movie'))}><MdFavorite></MdFavorite></div>}
+                                {!isFavorite(movie) && <div className='circle' onClick={() => toggleFavorite(mapperMedia(movie, 'movie'))}><MdFavoriteBorder></MdFavoriteBorder></div>}
+                                <div className='circle' onClick={handleShow} ><BsFillPlayFill></BsFillPlayFill></div>
+                                
                             </div>
                         </div>
-                        <h3>Vista General</h3>
+                        <div className='movie-backdrop' style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${movie.backdrop_path})` }}  ></div>
+                    </div>
+                    {/* <img className='movie-image col-md-3' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} width={300} height={450} /> */}
+                    <div className="movie-info">
+                    <h5 className='mt-5 mb-5 fw-bold d-flex align-items-center'><RiGlobalLine className='title-icon'></RiGlobalLine>Vista General</h5>
+                        <div className='genres mb-4'>{movie.genres.map(genre => <div key={genre.name} genre={genre} className='genre'>{genre.name}</div>)}</div>
                         <p>{movie.overview}</p>
 
                     </div>
 
                 </div>}
 
-            <div className='cast-container'>
-                <h3>Actores</h3>
-                <div className='cast'>
-                    {  (movie?.credits?.cast?.slice(0,8))?.map(actor => <div key={actor.id} className='actor'>
-                        <img src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`} alt={actor.name} width={140} height={190} />
-                        <p>{actor.name}</p>
-                    </div>
-                    )}
-                </div>
-            </div>
 
-            <div className='videos-container'>
-                <h3>Videos</h3>
-                <div className='videos'>
-                    {  (movie?.videos?.results)?.map(video => <div key={video.id} className='video'>
-                        <iframe width="300" height="200" src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                    </div> )}
-                </div>
-            </div>
 
+            <h5 className='mt-5 mb-5 fw-bold d-flex align-items-center'><IoIosPerson className='title-icon'></IoIosPerson>Actores</h5>
+
+            <Slider {...settings}>
+                {(movie?.credits?.cast?.slice(0, 15))?.map(actor => <CardCast key={actor.id} {...actor}></CardCast>)}
+
+            </Slider>
+            
+            
+           { movie?.videos?.results.length > 0 ?
+            <>
+            <h5 className='mt-5 mb-4 fw-bold d-flex align-items-center'><BsFillCameraVideoFill className='title-icon'></BsFillCameraVideoFill>Videos</h5>
+            <Row className='videos mt-5 mb-5'>
+                {movie?.videos?.results?.map(video => <Col key={video.id}><div className='video'>
+                    <iframe width="300" height="185" src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                </div></Col>)}
+            </Row>
+            </>
+            :""}
+            
         </div>
     )
 

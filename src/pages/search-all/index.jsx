@@ -4,6 +4,8 @@ import './styles.css';
 import Card from '../../components/card';
 import { Col, Row } from 'react-bootstrap';
 import { mapperMedia } from '../../core/media/media.utils';
+import { t } from 'i18next';
+import {BiSearchAlt2} from 'react-icons/bi';
 
 function SearchAll() {
     const [loading, setLoading] = useState(false);
@@ -42,15 +44,16 @@ function SearchAll() {
     return (
         <div className='search-all'>
             <div className='search-all-header'>
-                <div className='search-all-header-title'>
-                    <h1>Buscar</h1>
-                </div>
+                <div className="title-home mt-5">
+                <span className="title-icon">{<BiSearchAlt2></BiSearchAlt2>}</span>
+                <span className="title title-link">BUSCAR</span>
+            </div>
                 <div className='search-all-header-search'>
                     <input type='text' placeholder='Buscar...' onChange={handleSearch} />
                 </div>
             </div>
             <div className='search-all-content'>
-                {loading ? <div>Loading...</div>
+                {loading ? ''
                     :
                     <div>
                         {error ? <div>Error</div>

@@ -1,6 +1,6 @@
 import './styles.css';
 import { Link } from 'react-router-dom';
-import { Button, ButtonGroup, Container, Form, FormControl, InputGroup, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Button, ButtonGroup, Container, Dropdown, Form, FormControl, InputGroup, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useContext } from 'react';
 import { ThemeContext } from '../../contexts/theme.context';
@@ -37,7 +37,7 @@ function Header() {
           <div className='nav d-flex align-items-center'>
             <h1><Link className='logo' to='/'>WATCHDB</Link></h1>
           </div>
-          
+
           <div className='nav-toggle'>
             <div>
               <button className='button' onClick={() => i18n.changeLanguage('es')} >ES</button>
@@ -60,20 +60,43 @@ function Header() {
                 <InputGroup.Text id="basic-addon1"><FcSearch></FcSearch></InputGroup.Text>
               </InputGroup>
             </Link>
-            {isAuth
+            {/* {isAuth
               ? <>
-                {/* <Link className='header-text' to={'/user'}>
+                <Link className='header-text' to={'/user'}>
                 <di className='first-letter'>
                 <h4>{ user?.name?.charAt(0).toUpperCase()}</h4>
                 </di>
-                </Link> */}
-                <Link className='header-text' to={'/user'}>
+                </Link> 
+                 <Link className='header-text' to={'/user'}>
                   <div className='first-letter d-flex align-items-center'>
                     <h4 className='fs-1'><FaUserCircle></FaUserCircle></h4>
                   </div>
-                </Link>
+                </Link> */}
+                <Dropdown>
+                  <Dropdown.Toggle className='pb-0 pt-3' variant="success" id="dropdown-basic">
+                  <div className='first-letter d-flex align-items-center'>
+                    <h4 className='fs-1'><FaUserCircle></FaUserCircle></h4>
+                  </div>
+                  </Dropdown.Toggle>
 
-                {/* <h4 className='header-text' onClick={logout} >LOGOUT</h4> */}
+                  {isAuth 
+                  ? <Dropdown.Menu>
+                  <Dropdown.Item href='/user'>VER MI PERFIL</Dropdown.Item>
+                  <Dropdown.Item onClick={logout} >CERRAR SESIÓN</Dropdown.Item>
+                </Dropdown.Menu>
+             
+                  :<Dropdown.Menu>
+                  <Dropdown.Item href='/auth/register'>REGISTRASE</Dropdown.Item>
+                  <Dropdown.Item href='/auth/login'>ACCEDER</Dropdown.Item>
+                </Dropdown.Menu>
+              
+                  }
+
+                </Dropdown>
+
+                  
+
+                {/* <h4 className='header-text' onClick={logout} >LOGOUT</h4>
               </>
               : (
                 <>
@@ -88,7 +111,7 @@ function Header() {
                   </nav>
                 </>
               )
-            }
+            } */}
           </div>
 
 

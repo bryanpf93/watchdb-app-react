@@ -10,8 +10,9 @@ import Slider from 'react-slick';
 import { useUser } from '../../core/users/users.hook';
 import {IoIosPerson} from 'react-icons/io'
 import {BsFillCameraVideoFill} from 'react-icons/bs'
-import { mapperMedia } from '../../core/media/media.utils';
+import { mapperMedia, mapperTrailer } from '../../core/media/media.utils';
 import CardCast from '../../components/card-cast';
+import {RiGlobalLine } from 'react-icons/ri'
 
 function MoviesDetails() {
 
@@ -19,6 +20,7 @@ function MoviesDetails() {
     const [movie, setMovie] = useState({})
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
+    const [trailer, setTrailer] = useState('')
 
     const { isFavorite, toggleFavorite } = useUser();
 
@@ -80,8 +82,24 @@ function MoviesDetails() {
         ]
     };
 
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    
+    const handleShow = () => {
+        setTrailer(mapperTrailer(movie.videos.results))
+        setShow(true)
+    }
+
     return (
         <div className='movie-details'>
+            
+            <Modal show={show} onHide={handleClose} centered>
+                <Modal.Body className="p-0">
+                    <iframe width="100%" height="100%" src={trailer} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                </Modal.Body>
+            </Modal>
+
             {loading ? <div>Loading...</div>
                 :
 
@@ -93,7 +111,7 @@ function MoviesDetails() {
                             <div className='buttons mb-4'>
                                 {isFavorite(movie) && <div className='circle' onClick={() => toggleFavorite(mapperMedia(movie, 'movie'))}><MdFavorite></MdFavorite></div>}
                                 {!isFavorite(movie) && <div className='circle' onClick={() => toggleFavorite(mapperMedia(movie, 'movie'))}><MdFavoriteBorder></MdFavoriteBorder></div>}
-                                <div className='circle'><BsFillPlayFill></BsFillPlayFill></div>
+                                <div className='circle' onClick={handleShow} ><BsFillPlayFill></BsFillPlayFill></div>
                                 
                             </div>
                         </div>
@@ -101,7 +119,7 @@ function MoviesDetails() {
                     </div>
                     {/* <img className='movie-image col-md-3' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} width={300} height={450} /> */}
                     <div className="movie-info">
-                        <h3 className='fw-bold mt-4 mb-4'>Vista General</h3>
+                    <h5 className='mt-5 mb-5 fw-bold d-flex align-items-center'><RiGlobalLine className='title-icon'></RiGlobalLine>Vista General</h5>
                         <div className='genres mb-4'>{movie.genres.map(genre => <div key={genre.name} genre={genre} className='genre'>{genre.name}</div>)}</div>
                         <p>{movie.overview}</p>
 

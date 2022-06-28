@@ -1,8 +1,8 @@
-.person-details{
+.person-details {
     color: var(--color-text);
 }
 
-.person-image{
+.person-image {
     width: 350px;
     height: 400px;
     background-repeat: no-repeat;
@@ -11,13 +11,13 @@
     display: flex;
 }
 
-.person-biography{
+.person-biography {
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.person-credits-image{
+.person-credits-image {
     width: 200px;
     height: 300px;
     display: flex;
@@ -27,7 +27,9 @@
     background-size: cover;
 }
 
-.credits-title{
+
+
+.credits-title {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -35,4 +37,11 @@
     -webkit-line-clamp: 1;
     font-size: 1rem;
 
+}
+
+@media (max-width: 481px) {
+    .image-biography {
+        display: flex;
+        flex-wrap: wrap;
+    }
 }

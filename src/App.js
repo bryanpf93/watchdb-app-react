@@ -34,7 +34,7 @@ function App() {
       <div className={`app ${theme}`}>
         <Header></Header>
 
-        <div className='container' style={{ minHeight : '1400px'}}>
+        <div className='container' style={{ minHeight : '1000px'}}>
           <Routes>
             <Route path="/" element={<Home></Home>} /> {/* /*/}
             <Route path='/movies' element={<Movies></Movies>}></Route>

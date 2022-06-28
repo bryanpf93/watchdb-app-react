@@ -38,8 +38,18 @@ function Register() {
                         <input name="pass" type="password" placeholder="introduzca su password"></input>
                         <h5 className="text-formulary">EDAD</h5>
                         <input name="age" type="number" min={18} />
-                        <br></br>
-                        <button className='mt-4 mb-4 fs-5' type="submit">Registrarse</button>
+                       
+                        <div className="d-flex justify-content-center align-items-center mt-3">
+                            <input className="me-1" type='checkbox' />
+                            <span className="privacity">Acepto las 
+                                <a target='blank' href='https://www.freeprivacypolicy.com/live/186315a2-a3bf-4bd6-9984-fce7ee0fdea5'> Condiciones de Servicio y la Politica de Privacidad </a>
+                            de WATCHDB </span>
+                        </div>
+
+                        <button className='mt-3 mb-4 fs-5' type="submit">Registrarse</button>
+
+                        
+                        
                     </form>
                 </>
             }

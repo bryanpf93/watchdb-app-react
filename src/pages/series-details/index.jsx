@@ -1,9 +1,11 @@
 import { t } from 'i18next';
 import { useEffect, useState } from 'react';
 import { Button, Col, Modal, Row } from 'react-bootstrap';
-import { BsFillPlayFill } from 'react-icons/bs';
+import { BsFillCameraVideoFill, BsFillPlayFill } from 'react-icons/bs';
 import { HiTrendingUp } from 'react-icons/hi';
+import { IoIosPerson } from 'react-icons/io';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
+import { RiGlobalLine } from 'react-icons/ri';
 import { useParams } from 'react-router-dom';
 import Slider from 'react-slick';
 import CardCast from '../../components/card-cast';
@@ -115,14 +117,15 @@ function SeriesDetails() {
                         <div className='movie-backdrop' style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${serie.backdrop_path})` }}  ></div>
                     </div>
                     <div className="movie-info">
-                        <h5 className='fw-bold mt-4 mb-4'>Vista General</h5>
+                    <h5 className='mt-5 mb-5 fw-bold d-flex align-items-center'><RiGlobalLine className='title-icon'></RiGlobalLine>Vista General</h5>
+
                         <div className='genres mb-4'>{serie.genres.map(genre => <div key={genre.name} genre={genre} className='genre'>{genre.name}</div>)}</div>
                         <p>{serie.overview}</p>
                     </div>
 
                 </div>}
 
-            <h5 className='mt-5 mb-4 fw-bold'>Actores</h5>
+                <h5 className='mt-5 mb-5 fw-bold d-flex align-items-center'><IoIosPerson className='title-icon'></IoIosPerson>Actores</h5>
 
             <Slider {...settings}>
                 {(serie?.credits?.cast?.slice(0, 15))?.map(actor => <CardCast key={actor.id} {...actor}></CardCast>)}
@@ -132,7 +135,7 @@ function SeriesDetails() {
             {serie?.videos?.results.length > 0
                 ?
                 <>
-                    <h5 className='mt-5 mb-4 fw-bold'>Videos</h5>
+            <h5 className='mt-5 mb-4 fw-bold d-flex align-items-center'><BsFillCameraVideoFill className='title-icon'></BsFillCameraVideoFill>Videos</h5>
                     <Row className='videos mb-5'>
                         {serie?.videos?.results?.map(video => <Col key={video.id}><div className='video'>
                             <iframe width="300" height="185" src={`https://www.youtube.com/embed/${video.key}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>

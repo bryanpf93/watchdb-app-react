@@ -1,5 +1,5 @@
 .formulary{
-    width: 100%;
+    max-width: 700px !important;
     background-color: #dc3544;
     max-width: 350px;
     margin: 70px auto;
@@ -15,4 +15,8 @@
     font-size: 1.2rem;
     font-weight: bold;
     text-align: center;
+}
+
+.privacity{
+    color: var(--color-text);
 }

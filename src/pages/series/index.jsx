@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import Card from '../../components/card';
@@ -11,10 +12,22 @@ function Series() {
 
     const { t } = useTranslation('global');
     const { favorites } = useUser();
+    const [page,setPage] = useState(1);
+    const [mostPopularTvShows, setTvShows] = useState([]);
 
-    const { data: popularTvShows } = useFetchMedia('tv/popular', getPopularTvShows, favorites);
+    const { data } = useFetchMedia(`tv/popular?page=${page}`, getPopularTvShows, favorites);
 
-    console.log(popularTvShows);
+    const handlePage = () => {
+        setPage(prevPage => prevPage + 1);
+    }
+
+    useEffect(() => {
+        if (Array.isArray(data)) {
+            setTvShows(prevTvShows => [...prevTvShows, ...data]);
+        }
+    }, [data]);
+    
+        console.log(mostPopularTvShows);
 
     return (
         <>
@@ -23,9 +36,11 @@ function Series() {
                     {popularTvShows && popularTvShows.map(m => <TvPopular key={m.id} popularTV={m}></TvPopular>)}
                 </div> */}
             <Row xs={2} md={3} lg={4} xl={5} className="g-4">
-                {popularTvShows && popularTvShows.map(movie =>
+                {mostPopularTvShows && mostPopularTvShows.map(movie =>
                     <Col key={movie.id}><Card {...movie}></Card></Col>)}
             </Row>
+
+            <button onClick={handlePage} > NEXT</button>
         </>
     )
 }

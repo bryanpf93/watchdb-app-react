@@ -83,6 +83,16 @@
     flex-wrap: wrap;
 }
 
+.btn-success {
+    color: #fff;
+    background-color: var(--backgroud-color-header) !important;
+    border-color: var(--border-color) !important;
+    color: var(--color-text-header) !important
+}
+
+.btn-success:active{
+    border-color: var(--border-color) !important;
+}
 
 @media (max-width: 481px){
     .nav-toggle{
@@ -93,6 +103,10 @@
         gap: 10px;
         justify-content: flex-end;
     }
+    .first-letter{
+        width: 25px;
+        height: 25px;
+    }    
 }
 
 
